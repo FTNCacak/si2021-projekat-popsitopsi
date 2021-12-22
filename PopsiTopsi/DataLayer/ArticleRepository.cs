@@ -36,7 +36,7 @@ namespace DataLayer
             }
             return articles;
         }
-        public int InsertArticles(Article a)
+        public int InsertArticle(Article a)
         {
             using (SqlConnection sqlConnection = new SqlConnection(Constants.connectioString))
             {
@@ -48,7 +48,7 @@ namespace DataLayer
             }
             
         }
-        public int UpdateArticles(Article a)
+        public int UpdateArticle(Article a)
         {
             using(SqlConnection sqlConnection = new SqlConnection(Constants.connectioString))
             {
@@ -59,7 +59,7 @@ namespace DataLayer
                 return sqlCommand.ExecuteNonQuery();
             }
         }
-        public int DeleteArticles(int Id)
+        public int DeleteArticle(int Id)
         {
             using(SqlConnection sqlConnection = new SqlConnection(Constants.connectioString))
             {
