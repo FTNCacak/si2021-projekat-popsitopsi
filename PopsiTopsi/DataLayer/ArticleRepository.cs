@@ -12,7 +12,7 @@ namespace DataLayer
         public List<Article> GetAllArticles()
         {
             List<Article> articles = new List<Article>();
-            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectioString))
+            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectionString))
             {
                 sqlConnection.Open();
                 SqlCommand sqlCommand = new SqlCommand();
@@ -38,7 +38,7 @@ namespace DataLayer
         }
         public int InsertArticle(Article a)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectioString))
+            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectionString))
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
@@ -50,18 +50,18 @@ namespace DataLayer
         }
         public int UpdateArticle(Article a)
         {
-            using(SqlConnection sqlConnection = new SqlConnection(Constants.connectioString))
+            using(SqlConnection sqlConnection = new SqlConnection(Constants.connectionString))
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = string.Format("UPDATE Articles Name = '{0}',Type = '{1}', Price = '{2}', Image = '{3}', Description = '{4}' WHERE Id = '{5}'");
+                sqlCommand.CommandText = string.Format("UPDATE Articles Name = '{0}',Type = '{1}', Price = '{2}', Image = '{3}', Description = '{4}' WHERE Id = '{5}'", a.Name, a.Type, a.Price, a.Image, a.Description, a.Id);
                 sqlConnection.Open();
                 return sqlCommand.ExecuteNonQuery();
             }
         }
         public int DeleteArticle(int Id)
         {
-            using(SqlConnection sqlConnection = new SqlConnection(Constants.connectioString))
+            using(SqlConnection sqlConnection = new SqlConnection(Constants.connectionString))
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;

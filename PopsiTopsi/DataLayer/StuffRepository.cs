@@ -11,7 +11,7 @@ namespace DataLayer
         public List<Stuff> GetAllStuffs()
         {
             List<Stuff> stuffs = new List<Stuff>();
-            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectioString))
+            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectionString))
             {
                 sqlConnection.Open();
                 SqlCommand sqlCommand = new SqlCommand();
@@ -39,7 +39,7 @@ namespace DataLayer
         }
         public int InsertStuff(Stuff s)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectioString))
+            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectionString))
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
@@ -51,18 +51,18 @@ namespace DataLayer
         }
         public int UpdateStuff(Stuff s)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectioString))
+            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectionString))
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = string.Format("UPDATE Stuffs Name = '{0}', Surname = '{1}', Username = '{2}', Password = '{3}', PhoneNumber = '{4}', Email = '{5}' WHERE Id = '{5}'");
+                sqlCommand.CommandText = string.Format("UPDATE Stuffs Name = '{0}', Surname = '{1}', Username = '{2}', Password = '{3}', PhoneNumber = '{4}', Email = '{5}' WHERE Id = '{5}'",s.Name, s.Surname, s.Username, s.Password, s.PhoneNumber, s.Email, s.Id);
                 sqlConnection.Open();
                 return sqlCommand.ExecuteNonQuery();
             }
         }
         public int DeleteStuff(int Id)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectioString))
+            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectionString))
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
