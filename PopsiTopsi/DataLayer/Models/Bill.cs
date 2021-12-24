@@ -9,7 +9,7 @@ namespace DataLayer.Models
         public int Id { get; set; }
         public decimal Total { get; set; }
         public DateTime Date { get; set; }
-        public Stuff Stuff_Id { get; set; }
+        public int Stuff_Id { get; set; }
 
     }
 }
