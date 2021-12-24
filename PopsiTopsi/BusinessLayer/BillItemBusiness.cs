@@ -5,11 +5,11 @@ using System.Text;
 
 namespace BusinessLayer
 {
-   public class BillItemsBusiness
+   public class BillItemBusiness
     {
         public readonly BillItemRepository billItemRepository;
 
-        public BillItemsBusiness()
+        public BillItemBusiness()
         {
             this.billItemRepository = new BillItemRepository();
         }
