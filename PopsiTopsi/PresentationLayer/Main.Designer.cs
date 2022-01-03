@@ -30,7 +30,6 @@ namespace PresentationLayer
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.prijavaZaposlenogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.artikliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zaposleniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.računiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,22 +50,14 @@ namespace PresentationLayer
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.prijavaZaposlenogToolStripMenuItem,
             this.artikliToolStripMenuItem,
             this.zaposleniToolStripMenuItem,
             this.računiToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(375, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(227, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // prijavaZaposlenogToolStripMenuItem
-            // 
-            this.prijavaZaposlenogToolStripMenuItem.Font = new System.Drawing.Font("Century Schoolbook", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.prijavaZaposlenogToolStripMenuItem.Name = "prijavaZaposlenogToolStripMenuItem";
-            this.prijavaZaposlenogToolStripMenuItem.Size = new System.Drawing.Size(148, 20);
-            this.prijavaZaposlenogToolStripMenuItem.Text = "Prijava zaposlenog";
             // 
             // artikliToolStripMenuItem
             // 
@@ -74,6 +65,7 @@ namespace PresentationLayer
             this.artikliToolStripMenuItem.Name = "artikliToolStripMenuItem";
             this.artikliToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.artikliToolStripMenuItem.Text = "Artikli";
+            this.artikliToolStripMenuItem.Click += new System.EventHandler(this.artikliToolStripMenuItem_Click);
             // 
             // zaposleniToolStripMenuItem
             // 
@@ -81,6 +73,7 @@ namespace PresentationLayer
             this.zaposleniToolStripMenuItem.Name = "zaposleniToolStripMenuItem";
             this.zaposleniToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.zaposleniToolStripMenuItem.Text = "Zaposleni";
+            this.zaposleniToolStripMenuItem.Click += new System.EventHandler(this.zaposleniToolStripMenuItem_Click);
             // 
             // računiToolStripMenuItem
             // 
@@ -88,6 +81,7 @@ namespace PresentationLayer
             this.računiToolStripMenuItem.Name = "računiToolStripMenuItem";
             this.računiToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.računiToolStripMenuItem.Text = "Računi";
+            this.računiToolStripMenuItem.Click += new System.EventHandler(this.računiToolStripMenuItem_Click);
             // 
             // buttonDonuts
             // 
@@ -228,7 +222,6 @@ namespace PresentationLayer
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem prijavaZaposlenogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem artikliToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zaposleniToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem računiToolStripMenuItem;

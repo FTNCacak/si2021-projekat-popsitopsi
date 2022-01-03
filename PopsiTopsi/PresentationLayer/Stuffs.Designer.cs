@@ -143,6 +143,7 @@ namespace PresentationLayer
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(186, 34);
             this.textBoxPassword.TabIndex = 9;
+            this.textBoxPassword.UseSystemPasswordChar = true;
             // 
             // textBoxPhone
             // 
@@ -233,6 +234,7 @@ namespace PresentationLayer
             this.Controls.Add(this.labelName);
             this.Name = "Stuffs";
             this.Text = "Stuffs";
+            this.Load += new System.EventHandler(this.Stuffs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

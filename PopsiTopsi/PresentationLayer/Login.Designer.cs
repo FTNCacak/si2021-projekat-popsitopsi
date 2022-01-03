@@ -96,6 +96,7 @@ namespace PresentationLayer
             this.textBoxPass.Size = new System.Drawing.Size(185, 44);
             this.textBoxPass.TabIndex = 4;
             this.textBoxPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxPass.TextChanged += new System.EventHandler(this.textBoxPass_TextChanged);
             // 
             // buttonLogin
             // 
@@ -108,9 +109,11 @@ namespace PresentationLayer
             this.buttonLogin.TabIndex = 5;
             this.buttonLogin.Text = "PRIJAVI SE";
             this.buttonLogin.UseVisualStyleBackColor = false;
+            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
             // Login
             // 
+            this.AcceptButton = this.buttonLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
@@ -124,6 +127,7 @@ namespace PresentationLayer
             this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.Name = "Login";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
