@@ -24,11 +24,6 @@ namespace PresentationLayer
 
         private void Bills_Load(object sender, EventArgs e)
         {
-            List<Bill> bills = new List<Bill>();
-            bills.Add(new Bill(1, 150, DateTime.Now, 2));
-            bills.Add(new Bill(2, 250, DateTime.Now, 2));
-            bills.Add(new Bill(3, 100, DateTime.Now, 2));
-            dgvBills.DataSource = bills;
 
         }
     }

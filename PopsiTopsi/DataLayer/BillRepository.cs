@@ -50,7 +50,7 @@ namespace DataLayer
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = string.Format("UPDATE Bills Total = '{0}', Date = '{1}', Stuff_Id = '{2}' WHERE Id = '{3}'",b.Total, b.Date, b.Stuff_Id, b.Id);
+                sqlCommand.CommandText = string.Format("UPDATE Bills SET Total = '{0}', Date = '{1}', Stuff_Id = '{2}' WHERE Id = '{3}'",b.Total, b.Date, b.Stuff_Id, b.Id);
                 sqlConnection.Open();
                 return sqlCommand.ExecuteNonQuery();
             }

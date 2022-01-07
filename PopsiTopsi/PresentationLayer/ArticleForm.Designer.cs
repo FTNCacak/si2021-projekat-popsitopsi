@@ -1,7 +1,7 @@
 ﻿
 namespace PresentationLayer
 {
-    partial class Article
+    partial class ArticleForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,9 @@ namespace PresentationLayer
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cbDonut = new System.Windows.Forms.CheckBox();
@@ -38,6 +41,7 @@ namespace PresentationLayer
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAddPhoto = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tbArticalDescription = new System.Windows.Forms.TextBox();
@@ -46,11 +50,15 @@ namespace PresentationLayer
             this.btnArticalAdd = new System.Windows.Forms.Button();
             this.btnArticalChange = new System.Windows.Forms.Button();
             this.btnArticalDelete = new System.Windows.Forms.Button();
-            this.dataGridViewArticals = new System.Windows.Forms.DataGridView();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.dgArticles = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArticals)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgArticles)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -148,6 +156,7 @@ namespace PresentationLayer
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnAddPhoto);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.tbArticalDescription);
@@ -166,11 +175,25 @@ namespace PresentationLayer
             this.panel1.Size = new System.Drawing.Size(444, 561);
             this.panel1.TabIndex = 12;
             // 
+            // btnAddPhoto
+            // 
+            this.btnAddPhoto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.btnAddPhoto.Font = new System.Drawing.Font("Castellar", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAddPhoto.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnAddPhoto.Location = new System.Drawing.Point(132, 436);
+            this.btnAddPhoto.Name = "btnAddPhoto";
+            this.btnAddPhoto.Size = new System.Drawing.Size(118, 22);
+            this.btnAddPhoto.TabIndex = 20;
+            this.btnAddPhoto.Text = "DODAJ SLIKU";
+            this.btnAddPhoto.UseVisualStyleBackColor = false;
+            this.btnAddPhoto.Click += new System.EventHandler(this.btnAddPhoto_Click);
+            // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(242, 421);
+            this.pictureBox1.Location = new System.Drawing.Point(277, 421);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(140, 107);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
@@ -224,6 +247,7 @@ namespace PresentationLayer
             this.btnArticalAdd.TabIndex = 16;
             this.btnArticalAdd.Text = "DODAJ";
             this.btnArticalAdd.UseVisualStyleBackColor = false;
+            this.btnArticalAdd.Click += new System.EventHandler(this.btnArticalAdd_Click);
             // 
             // btnArticalChange
             // 
@@ -249,38 +273,107 @@ namespace PresentationLayer
             this.btnArticalDelete.Text = "IZBRISI";
             this.btnArticalDelete.UseVisualStyleBackColor = false;
             // 
-            // dataGridViewArticals
-            // 
-            this.dataGridViewArticals.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dataGridViewArticals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewArticals.Location = new System.Drawing.Point(574, 55);
-            this.dataGridViewArticals.Name = "dataGridViewArticals";
-            this.dataGridViewArticals.RowTemplate.Height = 25;
-            this.dataGridViewArticals.Size = new System.Drawing.Size(555, 308);
-            this.dataGridViewArticals.TabIndex = 19;
-            // 
             // openFileDialog
             // 
-            this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.FileName = "dialog";
             // 
-            // Article
+            // dgArticles
+            // 
+            this.dgArticles.AllowUserToAddRows = false;
+            this.dgArticles.AllowUserToDeleteRows = false;
+            this.dgArticles.AllowUserToResizeColumns = false;
+            this.dgArticles.AllowUserToResizeRows = false;
+            this.dgArticles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgArticles.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgArticles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgArticles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgArticles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.SName,
+            this.Price,
+            this.Type});
+            this.dgArticles.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.dgArticles.Location = new System.Drawing.Point(620, 46);
+            this.dgArticles.MultiSelect = false;
+            this.dgArticles.Name = "dgArticles";
+            this.dgArticles.ReadOnly = true;
+            this.dgArticles.RowHeadersVisible = false;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgArticles.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgArticles.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgArticles.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dgArticles.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            this.dgArticles.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dgArticles.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgArticles.RowTemplate.Height = 25;
+            this.dgArticles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgArticles.Size = new System.Drawing.Size(449, 310);
+            this.dgArticles.TabIndex = 19;
+            this.dgArticles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgArticles_CellClick);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.Id.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Id.HeaderText = "Šifra";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Width = 75;
+            // 
+            // SName
+            // 
+            this.SName.DataPropertyName = "Name";
+            this.SName.HeaderText = "Naziv";
+            this.SName.Name = "SName";
+            this.SName.ReadOnly = true;
+            this.SName.Width = 78;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "Cena";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.Width = 71;
+            // 
+            // Type
+            // 
+            this.Type.DataPropertyName = "Type";
+            this.Type.HeaderText = "Tip";
+            this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
+            this.Type.Width = 59;
+            // 
+            // ArticleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(1142, 673);
-            this.Controls.Add(this.dataGridViewArticals);
+            this.Controls.Add(this.dgArticles);
             this.Controls.Add(this.btnArticalDelete);
             this.Controls.Add(this.btnArticalChange);
             this.Controls.Add(this.btnArticalAdd);
             this.Controls.Add(this.panel1);
-            this.Name = "Article";
+            this.Name = "ArticleForm";
             this.Text = "Artikli";
             this.Load += new System.EventHandler(this.Articals_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArticals)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgArticles)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -303,7 +396,12 @@ namespace PresentationLayer
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnArticalChange;
         private System.Windows.Forms.Button btnArticalDelete;
-        private System.Windows.Forms.DataGridView dataGridViewArticals;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Button btnAddPhoto;
+        private System.Windows.Forms.DataGridView dgArticles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
     }
 }

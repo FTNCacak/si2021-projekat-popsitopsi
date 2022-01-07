@@ -54,7 +54,7 @@ namespace DataLayer
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = string.Format("UPDATE Articles Name = '{0}',Type = '{1}', Price = '{2}', Image = '{3}', Description = '{4}' WHERE Id = '{5}'", a.Name, a.Type, a.Price, a.Image, a.Description, a.Id);
+                sqlCommand.CommandText = string.Format("UPDATE Articles SET Name = '{0}',Type = '{1}', Price = '{2}', Image = '{3}', Description = '{4}' WHERE Id = '{5}'", a.Name, a.Type, a.Price, a.Image, a.Description, a.Id);
                 sqlConnection.Open();
                 return sqlCommand.ExecuteNonQuery();
             }
