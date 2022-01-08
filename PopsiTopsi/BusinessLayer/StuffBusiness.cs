@@ -28,5 +28,27 @@ namespace BusinessLayer
         {
             return this.stuffRepository.GetAllStuffs();
         }
+
+        public bool DeleteStuff(int idSelected)
+        {
+            if (this.stuffRepository.DeleteStuff(idSelected) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateStuff(Stuff s)
+        {
+            if (this.stuffRepository.UpdateStuff(s) > 0)
+            {
+                return true;
+            }
+            return false;
+
+        }
     }
 }
