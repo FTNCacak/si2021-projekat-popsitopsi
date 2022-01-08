@@ -22,12 +22,9 @@ namespace DataLayer
                 while (sqlDataReader.Read())
                 {
                     BillItem billitem = new BillItem();
-                    billitem.Id = sqlDataReader.GetInt32(0);
-                    billitem.Quantity = sqlDataReader.GetInt32(1);
-                    billitem.Bill_Id = sqlDataReader.GetInt32(2);
-                    billitem.Stuff_Id = sqlDataReader.GetInt32(3);
-                    billitem.Article_Id = sqlDataReader.GetInt32(4);
-
+                    billitem.Quantity = sqlDataReader.GetInt32(0);
+                    billitem.Bill_Id = sqlDataReader.GetInt32(1);
+                    billitem.Article_Id = sqlDataReader.GetInt32(2);
                     billitems.Add(billitem);
                 }
             }
@@ -39,7 +36,7 @@ namespace DataLayer
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = string.Format("INSERT INTO BillItems VALUES('{0}', '{1}', '{2}', '{3}')", b.Quantity, b.Bill_Id, b.Stuff_Id, b.Article_Id);
+                sqlCommand.CommandText = string.Format("INSERT INTO BillItems VALUES('{0}', '{1}', '{2}')", b.Quantity, b.Bill_Id, b.Article_Id);
                 sqlConnection.Open();
                 return sqlCommand.ExecuteNonQuery();
             }
@@ -51,18 +48,18 @@ namespace DataLayer
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = string.Format("UPDATE BillItems Quantity = '{0}', Bill_Id = '{1}', Stuff_Id = '{2}', Article_Id = '{3}' WHERE Id = '{4}'",b.Quantity, b.Bill_Id, b.Stuff_Id, b.Article_Id, b.Id);
+                sqlCommand.CommandText = string.Format("UPDATE BillItems SET Quantity = '{0}' WHERE Bill_Id = '{1}' AND Article_Id = '{2}' ",b.Quantity, b.Bill_Id, b.Article_Id);
                 sqlConnection.Open();
                 return sqlCommand.ExecuteNonQuery();
             }
         }
-        public int DeleteBillItem(int Id)
+        public int DeleteBillItem(int BillId, int ArticleId)
         {
             using (SqlConnection sqlConnection = new SqlConnection(Constants.connectionString))
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = string.Format("DELETE FROM BillItems WHERE Id = '{0}'", Id);
+                sqlCommand.CommandText = string.Format("DELETE FROM BillItems WHERE BillId = '{0}'AND ArticleId='{1}'", BillId, ArticleId);
                 sqlConnection.Open();
                 return sqlCommand.ExecuteNonQuery();
             }

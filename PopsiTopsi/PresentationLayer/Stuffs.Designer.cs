@@ -29,23 +29,33 @@ namespace PresentationLayer
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBoxName = new System.Windows.Forms.TextBox();
-            this.textBoxSurname = new System.Windows.Forms.TextBox();
-            this.textBoxUsername = new System.Windows.Forms.TextBox();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.textBoxPhone = new System.Windows.Forms.TextBox();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tbStuffName = new System.Windows.Forms.TextBox();
+            this.tbStuffSurname = new System.Windows.Forms.TextBox();
+            this.tbStuffUsername = new System.Windows.Forms.TextBox();
+            this.tbStuffPassword = new System.Windows.Forms.TextBox();
+            this.tbStuffPhone = new System.Windows.Forms.TextBox();
+            this.tbStuffEmail = new System.Windows.Forms.TextBox();
+            this.dgStuffs = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonChange = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgStuffs)).BeginInit();
             this.SuspendLayout();
             // 
             // labelName
@@ -84,9 +94,9 @@ namespace PresentationLayer
             this.label3.Font = new System.Drawing.Font("Castellar", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(25, 202);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 25);
+            this.label3.Size = new System.Drawing.Size(131, 25);
             this.label3.TabIndex = 3;
-            this.label3.Text = "ŠIFRA:";
+            this.label3.Text = "LOZINKA:";
             // 
             // label4
             // 
@@ -108,71 +118,166 @@ namespace PresentationLayer
             this.label5.TabIndex = 5;
             this.label5.Text = "EMAIL:";
             // 
-            // textBoxName
+            // tbStuffName
             // 
-            this.textBoxName.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBoxName.Location = new System.Drawing.Point(282, 28);
-            this.textBoxName.Multiline = true;
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(186, 34);
-            this.textBoxName.TabIndex = 6;
+            this.tbStuffName.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbStuffName.Location = new System.Drawing.Point(282, 28);
+            this.tbStuffName.Multiline = true;
+            this.tbStuffName.Name = "tbStuffName";
+            this.tbStuffName.Size = new System.Drawing.Size(186, 34);
+            this.tbStuffName.TabIndex = 6;
             // 
-            // textBoxSurname
+            // tbStuffSurname
             // 
-            this.textBoxSurname.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBoxSurname.Location = new System.Drawing.Point(282, 81);
-            this.textBoxSurname.Multiline = true;
-            this.textBoxSurname.Name = "textBoxSurname";
-            this.textBoxSurname.Size = new System.Drawing.Size(186, 34);
-            this.textBoxSurname.TabIndex = 7;
+            this.tbStuffSurname.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbStuffSurname.Location = new System.Drawing.Point(282, 81);
+            this.tbStuffSurname.Multiline = true;
+            this.tbStuffSurname.Name = "tbStuffSurname";
+            this.tbStuffSurname.Size = new System.Drawing.Size(186, 34);
+            this.tbStuffSurname.TabIndex = 7;
             // 
-            // textBoxUsername
+            // tbStuffUsername
             // 
-            this.textBoxUsername.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBoxUsername.Location = new System.Drawing.Point(282, 138);
-            this.textBoxUsername.Multiline = true;
-            this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.Size = new System.Drawing.Size(186, 34);
-            this.textBoxUsername.TabIndex = 8;
+            this.tbStuffUsername.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbStuffUsername.Location = new System.Drawing.Point(282, 138);
+            this.tbStuffUsername.Multiline = true;
+            this.tbStuffUsername.Name = "tbStuffUsername";
+            this.tbStuffUsername.Size = new System.Drawing.Size(186, 34);
+            this.tbStuffUsername.TabIndex = 8;
             // 
-            // textBoxPassword
+            // tbStuffPassword
             // 
-            this.textBoxPassword.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBoxPassword.Location = new System.Drawing.Point(282, 193);
-            this.textBoxPassword.Multiline = true;
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(186, 34);
-            this.textBoxPassword.TabIndex = 9;
-            this.textBoxPassword.UseSystemPasswordChar = true;
+            this.tbStuffPassword.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbStuffPassword.Location = new System.Drawing.Point(282, 193);
+            this.tbStuffPassword.Multiline = true;
+            this.tbStuffPassword.Name = "tbStuffPassword";
+            this.tbStuffPassword.PasswordChar = '*';
+            this.tbStuffPassword.Size = new System.Drawing.Size(186, 34);
+            this.tbStuffPassword.TabIndex = 9;
+            this.tbStuffPassword.UseSystemPasswordChar = true;
             // 
-            // textBoxPhone
+            // tbStuffPhone
             // 
-            this.textBoxPhone.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBoxPhone.Location = new System.Drawing.Point(282, 249);
-            this.textBoxPhone.Multiline = true;
-            this.textBoxPhone.Name = "textBoxPhone";
-            this.textBoxPhone.Size = new System.Drawing.Size(186, 34);
-            this.textBoxPhone.TabIndex = 10;
+            this.tbStuffPhone.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbStuffPhone.Location = new System.Drawing.Point(282, 249);
+            this.tbStuffPhone.Multiline = true;
+            this.tbStuffPhone.Name = "tbStuffPhone";
+            this.tbStuffPhone.Size = new System.Drawing.Size(186, 34);
+            this.tbStuffPhone.TabIndex = 10;
             // 
-            // textBoxEmail
+            // tbStuffEmail
             // 
-            this.textBoxEmail.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBoxEmail.Location = new System.Drawing.Point(282, 304);
-            this.textBoxEmail.Multiline = true;
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(186, 34);
-            this.textBoxEmail.TabIndex = 11;
+            this.tbStuffEmail.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbStuffEmail.Location = new System.Drawing.Point(282, 304);
+            this.tbStuffEmail.Multiline = true;
+            this.tbStuffEmail.Name = "tbStuffEmail";
+            this.tbStuffEmail.Size = new System.Drawing.Size(186, 34);
+            this.tbStuffEmail.TabIndex = 11;
             // 
-            // dataGridView1
+            // dgStuffs
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dataGridView1.Location = new System.Drawing.Point(552, 28);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(457, 310);
-            this.dataGridView1.TabIndex = 12;
+            this.dgStuffs.AllowUserToAddRows = false;
+            this.dgStuffs.AllowUserToDeleteRows = false;
+            this.dgStuffs.AllowUserToResizeColumns = false;
+            this.dgStuffs.AllowUserToResizeRows = false;
+            this.dgStuffs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgStuffs.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgStuffs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgStuffs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgStuffs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.SName,
+            this.Surname,
+            this.Username,
+            this.Password,
+            this.Phone,
+            this.Email});
+            this.dgStuffs.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.dgStuffs.Location = new System.Drawing.Point(511, 28);
+            this.dgStuffs.MultiSelect = false;
+            this.dgStuffs.Name = "dgStuffs";
+            this.dgStuffs.ReadOnly = true;
+            this.dgStuffs.RowHeadersVisible = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgStuffs.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgStuffs.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgStuffs.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dgStuffs.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            this.dgStuffs.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dgStuffs.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgStuffs.RowTemplate.Height = 25;
+            this.dgStuffs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgStuffs.Size = new System.Drawing.Size(513, 310);
+            this.dgStuffs.TabIndex = 12;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.Id.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Id.HeaderText = "Šifra";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Width = 75;
+            // 
+            // SName
+            // 
+            this.SName.DataPropertyName = "Name";
+            this.SName.HeaderText = "Ime";
+            this.SName.Name = "SName";
+            this.SName.ReadOnly = true;
+            this.SName.Width = 65;
+            // 
+            // Surname
+            // 
+            this.Surname.DataPropertyName = "Surname";
+            this.Surname.HeaderText = "Prezime";
+            this.Surname.Name = "Surname";
+            this.Surname.ReadOnly = true;
+            this.Surname.Width = 95;
+            // 
+            // Username
+            // 
+            this.Username.DataPropertyName = "Username";
+            this.Username.HeaderText = "Username";
+            this.Username.Name = "Username";
+            this.Username.ReadOnly = true;
+            this.Username.Width = 110;
+            // 
+            // Password
+            // 
+            this.Password.DataPropertyName = "Password";
+            this.Password.HeaderText = "Lozinka";
+            this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
+            this.Password.Width = 91;
+            // 
+            // Phone
+            // 
+            this.Phone.DataPropertyName = "PhoneNumber";
+            this.Phone.HeaderText = "Broj telefona";
+            this.Phone.Name = "Phone";
+            this.Phone.ReadOnly = true;
+            this.Phone.Width = 137;
+            // 
+            // Email
+            // 
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            this.Email.Width = 74;
             // 
             // buttonAdd
             // 
@@ -185,6 +290,7 @@ namespace PresentationLayer
             this.buttonAdd.TabIndex = 13;
             this.buttonAdd.Text = "DODAJ";
             this.buttonAdd.UseVisualStyleBackColor = false;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // buttonChange
             // 
@@ -219,13 +325,13 @@ namespace PresentationLayer
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonChange);
             this.Controls.Add(this.buttonAdd);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBoxEmail);
-            this.Controls.Add(this.textBoxPhone);
-            this.Controls.Add(this.textBoxPassword);
-            this.Controls.Add(this.textBoxUsername);
-            this.Controls.Add(this.textBoxSurname);
-            this.Controls.Add(this.textBoxName);
+            this.Controls.Add(this.dgStuffs);
+            this.Controls.Add(this.tbStuffEmail);
+            this.Controls.Add(this.tbStuffPhone);
+            this.Controls.Add(this.tbStuffPassword);
+            this.Controls.Add(this.tbStuffUsername);
+            this.Controls.Add(this.tbStuffSurname);
+            this.Controls.Add(this.tbStuffName);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -235,7 +341,7 @@ namespace PresentationLayer
             this.Name = "Stuffs";
             this.Text = "Stuffs";
             this.Load += new System.EventHandler(this.Stuffs_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgStuffs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,15 +355,22 @@ namespace PresentationLayer
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.TextBox textBoxSurname;
-        private System.Windows.Forms.TextBox textBoxUsername;
-        private System.Windows.Forms.TextBox textBoxPassword;
-        private System.Windows.Forms.TextBox textBoxPhone;
-        private System.Windows.Forms.TextBox textBoxEmail;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox tbStuffName;
+        private System.Windows.Forms.TextBox tbStuffSurname;
+        private System.Windows.Forms.TextBox tbStuffUsername;
+        private System.Windows.Forms.TextBox tbStuffPassword;
+        private System.Windows.Forms.TextBox tbStuffPhone;
+        private System.Windows.Forms.TextBox tbStuffEmail;
+        private System.Windows.Forms.DataGridView dgStuffs;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonChange;
         private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Username;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
     }
 }

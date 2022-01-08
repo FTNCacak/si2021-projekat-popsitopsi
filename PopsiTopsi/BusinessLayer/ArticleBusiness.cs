@@ -2,6 +2,7 @@
 using DataLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BusinessLayer
@@ -26,6 +27,10 @@ namespace BusinessLayer
         public List<Article> GetAllArticles()
         {
             return this.articleRepository.GetAllArticles();
+        }
+       public Article GetSelectedArticle(int id)
+        {
+            return this.articleRepository.GetAllArticles().FirstOrDefault(s => s.Id == id);
         }
     }
 }

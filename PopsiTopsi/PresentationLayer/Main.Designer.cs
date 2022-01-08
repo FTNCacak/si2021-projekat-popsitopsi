@@ -29,6 +29,9 @@ namespace PresentationLayer
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.artikliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zaposleniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,9 +43,15 @@ namespace PresentationLayer
             this.button1 = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonPay = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panelArticles = new System.Windows.Forms.FlowLayoutPanel();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.dgBill = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgBill)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -96,6 +105,7 @@ namespace PresentationLayer
             this.buttonDonuts.TabIndex = 1;
             this.buttonDonuts.Text = "KROFNE";
             this.buttonDonuts.UseVisualStyleBackColor = false;
+            this.buttonDonuts.Click += new System.EventHandler(this.buttonDonuts_Click);
             // 
             // buttonMuffins
             // 
@@ -110,6 +120,7 @@ namespace PresentationLayer
             this.buttonMuffins.TabIndex = 2;
             this.buttonMuffins.Text = "MAFINI";
             this.buttonMuffins.UseVisualStyleBackColor = false;
+            this.buttonMuffins.Click += new System.EventHandler(this.buttonMuffins_Click);
             // 
             // buttonPops
             // 
@@ -124,6 +135,7 @@ namespace PresentationLayer
             this.buttonPops.TabIndex = 3;
             this.buttonPops.Text = "POPSI";
             this.buttonPops.UseVisualStyleBackColor = false;
+            this.buttonPops.Click += new System.EventHandler(this.buttonPops_Click);
             // 
             // buttonBoxs
             // 
@@ -138,6 +150,7 @@ namespace PresentationLayer
             this.buttonBoxs.TabIndex = 4;
             this.buttonBoxs.Text = "BOXOVI";
             this.buttonBoxs.UseVisualStyleBackColor = false;
+            this.buttonBoxs.Click += new System.EventHandler(this.buttonBoxs_Click);
             // 
             // button1
             // 
@@ -160,7 +173,7 @@ namespace PresentationLayer
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDelete.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.buttonDelete.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonDelete.Location = new System.Drawing.Point(789, 477);
+            this.buttonDelete.Location = new System.Drawing.Point(805, 477);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(150, 43);
             this.buttonDelete.TabIndex = 6;
@@ -181,15 +194,91 @@ namespace PresentationLayer
             this.buttonPay.Text = "NAPLATI";
             this.buttonPay.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // panelArticles
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(805, 109);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(311, 346);
-            this.dataGridView1.TabIndex = 8;
+            this.panelArticles.AutoScroll = true;
+            this.panelArticles.Location = new System.Drawing.Point(12, 109);
+            this.panelArticles.Name = "panelArticles";
+            this.panelArticles.Size = new System.Drawing.Size(771, 411);
+            this.panelArticles.TabIndex = 9;
+            // 
+            // dgBill
+            // 
+            this.dgBill.AllowUserToAddRows = false;
+            this.dgBill.AllowUserToDeleteRows = false;
+            this.dgBill.AllowUserToResizeColumns = false;
+            this.dgBill.AllowUserToResizeRows = false;
+            this.dgBill.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgBill.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgBill.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgBill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgBill.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.SName,
+            this.Price,
+            this.Quantity});
+            this.dgBill.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.dgBill.Location = new System.Drawing.Point(805, 109);
+            this.dgBill.MultiSelect = false;
+            this.dgBill.Name = "dgBill";
+            this.dgBill.ReadOnly = true;
+            this.dgBill.RowHeadersVisible = false;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgBill.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgBill.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgBill.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dgBill.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            this.dgBill.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dgBill.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgBill.RowTemplate.Height = 25;
+            this.dgBill.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgBill.Size = new System.Drawing.Size(322, 341);
+            this.dgBill.TabIndex = 20;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.Id.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Id.HeaderText = "Šifra";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Width = 75;
+            // 
+            // SName
+            // 
+            this.SName.DataPropertyName = "Name";
+            this.SName.HeaderText = "Naziv";
+            this.SName.Name = "SName";
+            this.SName.ReadOnly = true;
+            this.SName.Width = 78;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "Cena";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.Width = 71;
+            // 
+            // Quantity
+            // 
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.HeaderText = "Količina";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            this.Quantity.Width = 90;
             // 
             // Main
             // 
@@ -197,7 +286,8 @@ namespace PresentationLayer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1157, 577);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgBill);
+            this.Controls.Add(this.panelArticles);
             this.Controls.Add(this.buttonPay);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.button1);
@@ -213,7 +303,7 @@ namespace PresentationLayer
             this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgBill)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,6 +322,12 @@ namespace PresentationLayer
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonPay;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.FlowLayoutPanel panelArticles;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.DataGridView dgBill;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
     }
 }
