@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BusinessLayer
 {
-   public class BillBusiness
+    public class BillBusiness
     {
         public readonly BillRepository billRepository;
 
@@ -27,6 +27,28 @@ namespace BusinessLayer
         public List<Bill> GetAllBills()
         {
             return this.billRepository.GetAllBills();
+        }
+
+        public bool DeleteBill(int idSelected)
+        {
+            if (this.billRepository.DeleteBill(idSelected) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateBill(Bill b)
+        {
+            if (this.billRepository.UpdateBill(b) > 0)
+            {
+                return true;
+            }
+            return false;
+
         }
     }
 }

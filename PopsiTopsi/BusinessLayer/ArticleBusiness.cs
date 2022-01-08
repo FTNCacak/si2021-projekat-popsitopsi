@@ -10,7 +10,7 @@ namespace BusinessLayer
     public class ArticleBusiness
     {
         public readonly ArticleRepository articleRepository;
-        
+
         public ArticleBusiness()
         {
             this.articleRepository = new ArticleRepository();
@@ -28,9 +28,30 @@ namespace BusinessLayer
         {
             return this.articleRepository.GetAllArticles();
         }
-       public Article GetSelectedArticle(int id)
+        public Article GetSelectedArticle(int id)
         {
             return this.articleRepository.GetAllArticles().FirstOrDefault(s => s.Id == id);
+        }
+
+        public bool DeleteArticle(int idSelected)
+        {
+            if (this.articleRepository.DeleteArticle(idSelected) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool UpdateArticle(Article a)
+        {
+            if (this.articleRepository.UpdateArticle(a) > 0)
+            {
+                return true;
+            }
+            return false;
+
         }
     }
 }
