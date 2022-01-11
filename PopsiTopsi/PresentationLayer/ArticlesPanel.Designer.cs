@@ -53,6 +53,7 @@ namespace PresentationLayer
             this.pbPhoto.Location = new System.Drawing.Point(21, 42);
             this.pbPhoto.Name = "pbPhoto";
             this.pbPhoto.Size = new System.Drawing.Size(212, 107);
+            this.pbPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPhoto.TabIndex = 1;
             this.pbPhoto.TabStop = false;
             // 

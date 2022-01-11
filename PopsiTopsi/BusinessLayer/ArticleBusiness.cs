@@ -44,9 +44,9 @@ namespace BusinessLayer
                 return false;
             }
         }
-        public bool UpdateArticle(Article a)
+        public bool UpdateArticle(Article a,int idSelected)
         {
-            if (this.articleRepository.UpdateArticle(a) > 0)
+            if (this.articleRepository.UpdateArticle(a,idSelected) > 0)
             {
                 return true;
             }

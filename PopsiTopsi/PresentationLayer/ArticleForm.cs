@@ -16,7 +16,8 @@ namespace PresentationLayer
     {
         public readonly ArticleBusiness articleBusiness;
         public OpenFileDialog dialog;
-        public byte[] img;
+        public Image img;
+        public byte[] byteimg;
         public ArticleForm()
         {
             InitializeComponent();
@@ -25,6 +26,17 @@ namespace PresentationLayer
         public void UpdateDataGrid()
         {
             dgArticles.DataSource = this.articleBusiness.GetAllArticles();
+        }
+        public void DeleteTextBox()
+        {
+            tbArticalName.Text = "";
+            tbArticalPrice.Text = "";
+            tbArticalDescription.Text = "";
+            pictureBox1.Image = null;
+            cbBox.Checked = false;
+            cbDonut.Checked = false;
+            cbMuffin.Checked = false;
+            cbPops.Checked = false;
         }
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -59,7 +71,7 @@ namespace PresentationLayer
             article.Price = Decimal.Parse(tbArticalPrice.Text);
             article.Type = type;
             article.Description = tbArticalDescription.Text;
-            article.Image = img;
+            article.Image = Convert.ToBase64String(byteimg);
 
             bool result = this.articleBusiness.InsertArticle(article);
             if (result)
@@ -67,38 +79,41 @@ namespace PresentationLayer
             else
                 MessageBox.Show("Unos artikala nije uspesan!");
             UpdateDataGrid();
-            tbArticalName.Text = "";
-            tbArticalPrice.Text = "";
-            tbArticalDescription.Text = "";
-            pictureBox1.Image = null;
-            cbBox.Checked = false;
-            cbDonut.Checked = false;
-            cbMuffin.Checked = false;
-            cbPops.Checked = false;
+            DeleteTextBox();
+           
         }
+        Image ConvertBinaryToImage(byte[] data)
+        {
+            using (MemoryStream ms = new MemoryStream(data))
+            {
+                return Image.FromStream(ms);
+            }
 
+        }
+        byte[] ConvertImageToBinary(Image img)
+        {
+            using (var ms = new MemoryStream())
+            {
+                img.Save(ms, img.RawFormat);
+                return ms.ToArray();
+            }
+        }
         private void btnAddPhoto_Click(object sender, EventArgs e)
         {
-            this.dialog = new OpenFileDialog();
-            dialog.Title = "Open Image";
-            dialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.tif;...";
-            string f = pictureBox1.ImageLocation;
-
-            
-            if (dialog.ShowDialog() == DialogResult.OK)
+            using (OpenFileDialog openFile = new OpenFileDialog() { Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.tif;...", ValidateNames = true, Multiselect = false })
             {
-                Bitmap bmp = new Bitmap(dialog.FileName);
-                 pictureBox1.Image = bmp;
-                 MemoryStream ms = new MemoryStream();
-                 bmp.Save(ms, bmp.RawFormat);
-                img = ms.ToArray();
-              
+                if (openFile.ShowDialog() == DialogResult.OK)
+                {
+                    lblFileName.Text = openFile.FileName;
+                    img = Image.FromFile(lblFileName.Text);
+                    byteimg = ConvertImageToBinary(img);
+                    pictureBox1.Image =img ;
+                    
+                }
             }
-          
-            dialog.Dispose();
         }
-
-        private void dgArticles_CellClick(object sender, DataGridViewCellEventArgs e)
+        
+        private void dgArticles_Cell(object sender, DataGridViewCellEventArgs e)
         {
             int idSelect = Convert.ToInt32(dgArticles.SelectedRows[0].Cells["Id"].Value.ToString());
 
@@ -106,13 +121,57 @@ namespace PresentationLayer
             tbArticalName.Text = article.Name;
             tbArticalPrice.Text = article.Price.ToString();
             tbArticalDescription.Text = article.Description;
+            byteimg = Convert.FromBase64String(article.Image);
+            pictureBox1.Image = ConvertBinaryToImage(Convert.FromBase64String(article.Image));          
+        }
+
+        private void btnArticalDelete_Click(object sender, EventArgs e)
+        {
+            int idSelect = Convert.ToInt32(dgArticles.SelectedRows[0].Cells["Id"].Value.ToString());
            
-         /*   using (var ms = new MemoryStream(article.Image))
+            bool result = this.articleBusiness.DeleteArticle(idSelect);
+            if(result)
             {
-                ms.Write(img.ToArray(), 0, img.Length);
-                pictureBox1.Image= Image.FromStream(ms);
+                MessageBox.Show("Uspesno brisanje!");
             }
-          */
+            else
+            {
+                MessageBox.Show("Neuspesno brisanje!");
+            }
+            UpdateDataGrid();
+            DeleteTextBox();
+        }
+
+        private void btnArticalChange_Click(object sender, EventArgs e)
+        {
+             string type;
+            List<String> list = new List<String>();
+            foreach (CheckBox cb in panel1.Controls.OfType<CheckBox>())
+            {
+                if (cb.Checked)
+                {
+                    list.Add(cb.Text);
+                }
+            }
+            type = String.Join(",", list.ToArray());
+            int idSelect = Convert.ToInt32(dgArticles.SelectedRows[0].Cells["Id"].Value.ToString());
+            Article article = new Article();
+            article.Name = tbArticalName.Text;
+            article.Price = Decimal.Parse(tbArticalPrice.Text);
+            article.Type = type;
+            article.Description = tbArticalDescription.Text;
+            article.Image = Convert.ToBase64String(byteimg);
+            bool result = articleBusiness.UpdateArticle(article, idSelect);
+            if(result)
+            {
+                MessageBox.Show("Uspesna izmena!");
+            }
+            else
+            {
+                MessageBox.Show("Izmena nije uspesna!");
+            }
+            UpdateDataGrid();
+            DeleteTextBox();
         }
     }
 }

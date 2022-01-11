@@ -2,6 +2,7 @@
 using DataLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BusinessLayer
@@ -28,6 +29,11 @@ namespace BusinessLayer
         {
             return this.stuffRepository.GetAllStuffs();
         }
+        public Stuff GetSelectedStuff(int idSelected)
+        {
+            return this.stuffRepository.GetAllStuffs().FirstOrDefault(s => s.Id == idSelected);
+        }
+
 
         public bool DeleteStuff(int idSelected)
         {
@@ -41,9 +47,9 @@ namespace BusinessLayer
             }
         }
 
-        public bool UpdateStuff(Stuff s)
+        public bool UpdateStuff(Stuff s,int idSelected)
         {
-            if (this.stuffRepository.UpdateStuff(s) > 0)
+            if (this.stuffRepository.UpdateStuff(s,idSelected) > 0)
             {
                 return true;
             }

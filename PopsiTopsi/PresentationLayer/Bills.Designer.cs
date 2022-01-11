@@ -29,11 +29,14 @@ namespace PresentationLayer
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvBills = new System.Windows.Forms.DataGridView();
-            this.dgvBillItem = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Iznos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBills)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBillItem)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -53,52 +56,76 @@ namespace PresentationLayer
             this.dgvBills.AllowUserToDeleteRows = false;
             this.dgvBills.AllowUserToResizeColumns = false;
             this.dgvBills.AllowUserToResizeRows = false;
-            this.dgvBills.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvBills.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvBills.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Castellar", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBills.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBills.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBills.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.Date,
+            this.Iznos});
             this.dgvBills.Location = new System.Drawing.Point(45, 73);
             this.dgvBills.MultiSelect = false;
             this.dgvBills.Name = "dgvBills";
             this.dgvBills.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Castellar", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBills.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvBills.RowHeadersVisible = false;
+            this.dgvBills.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dgvBills.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Castellar", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dgvBills.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            this.dgvBills.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgvBills.RowTemplate.Height = 25;
             this.dgvBills.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBills.Size = new System.Drawing.Size(285, 388);
+            this.dgvBills.Size = new System.Drawing.Size(285, 381);
             this.dgvBills.TabIndex = 12;
+            this.dgvBills.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBills_CellContentClick);
             // 
-            // dgvBillItem
+            // Id
             // 
-            this.dgvBillItem.AllowUserToAddRows = false;
-            this.dgvBillItem.AllowUserToDeleteRows = false;
-            this.dgvBillItem.AllowUserToResizeColumns = false;
-            this.dgvBillItem.AllowUserToResizeRows = false;
-            this.dgvBillItem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvBillItem.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dgvBillItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBillItem.Location = new System.Drawing.Point(447, 73);
-            this.dgvBillItem.MultiSelect = false;
-            this.dgvBillItem.Name = "dgvBillItem";
-            this.dgvBillItem.ReadOnly = true;
-            this.dgvBillItem.RowHeadersVisible = false;
-            this.dgvBillItem.RowTemplate.Height = 25;
-            this.dgvBillItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBillItem.Size = new System.Drawing.Size(432, 388);
-            this.dgvBillItem.TabIndex = 13;
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Width = 56;
+            // 
+            // Date
+            // 
+            this.Date.HeaderText = "Datum";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            this.Date.Width = 109;
+            // 
+            // Iznos
+            // 
+            this.Iznos.HeaderText = "Total";
+            this.Iznos.Name = "Iznos";
+            this.Iznos.ReadOnly = true;
             // 
             // Bills
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(920, 549);
-            this.Controls.Add(this.dgvBillItem);
+            this.ClientSize = new System.Drawing.Size(396, 549);
             this.Controls.Add(this.dgvBills);
             this.Controls.Add(this.label2);
             this.Name = "Bills";
             this.Text = "Bills";
             this.Load += new System.EventHandler(this.Bills_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBills)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBillItem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,6 +135,8 @@ namespace PresentationLayer
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvBills;
-        private System.Windows.Forms.DataGridView dgvBillItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Iznos;
     }
 }

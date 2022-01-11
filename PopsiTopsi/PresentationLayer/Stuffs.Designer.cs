@@ -154,7 +154,6 @@ namespace PresentationLayer
             this.tbStuffPassword.PasswordChar = '*';
             this.tbStuffPassword.Size = new System.Drawing.Size(186, 34);
             this.tbStuffPassword.TabIndex = 9;
-            this.tbStuffPassword.UseSystemPasswordChar = true;
             // 
             // tbStuffPhone
             // 
@@ -220,6 +219,7 @@ namespace PresentationLayer
             this.dgStuffs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgStuffs.Size = new System.Drawing.Size(513, 310);
             this.dgStuffs.TabIndex = 12;
+            this.dgStuffs.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgStuffs_CellMouseClick);
             // 
             // Id
             // 
@@ -303,6 +303,7 @@ namespace PresentationLayer
             this.buttonChange.TabIndex = 14;
             this.buttonChange.Text = "IZMENI";
             this.buttonChange.UseVisualStyleBackColor = false;
+            this.buttonChange.Click += new System.EventHandler(this.buttonChange_Click);
             // 
             // buttonDelete
             // 
@@ -315,6 +316,7 @@ namespace PresentationLayer
             this.buttonDelete.TabIndex = 15;
             this.buttonDelete.Text = "IZBRIŠI";
             this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // Stuffs
             // 
