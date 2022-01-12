@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -18,9 +19,19 @@ namespace PresentationLayer
             article = a;
             lblName.Text = a.Name;
             lblPrice.Text = "Cena: "+ a.Price.ToString();
-            //pbPhoto.Image = a.Image;
+            //MemoryStream mstream = new MemoryStream(a.Image);
+            //s pbPhoto.Image = System.Drawing.Image.FromStream(mstream);
+            pbPhoto.Image = ConvertBinaryToImage(Convert.FromBase64String(a.Image));
         }
 
+        Image ConvertBinaryToImage(byte[] data)
+        {
+            using (MemoryStream ms = new MemoryStream(data))
+            {
+                return Image.FromStream(ms);
+            }
+
+        }
         private void lblPrice_Click(object sender, EventArgs e)
         {
 

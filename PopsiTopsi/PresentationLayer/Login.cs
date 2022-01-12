@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using DataLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,9 +26,20 @@ namespace PresentationLayer
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            Main main = new Main();
-            this.Hide();
-            main.ShowDialog();
+            string username = tbUsername.Text;
+            string password = tbPassword.Text;
+            List<Stuff> list =stuffBusiness.GetAllStuffs();
+            foreach(Stuff s in list)
+            {
+                if(s.Username.Equals(username)&& s.Password.Equals(password))
+                {
+                Main main = new Main();
+                this.Hide();
+                main.ShowDialog();
+                }
+            }
+
+           
         }
 
         private void textBoxPass_TextChanged(object sender, EventArgs e)

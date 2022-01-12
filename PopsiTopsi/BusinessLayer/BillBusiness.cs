@@ -50,5 +50,9 @@ namespace BusinessLayer
             return false;
 
         }
+        public int GetNewBillId()
+        {
+            return this.billRepository.GetNewBillId();
+        }
     }
 }

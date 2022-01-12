@@ -26,7 +26,7 @@ namespace DataLayer
                     bill.Total = sqlDataReader.GetDecimal(1);
                     bill.Date = sqlDataReader.GetDateTime(2);
                     bill.Stuff_Id = sqlDataReader.GetInt32(3);
-                    
+
                     bills.Add(bill);
                 }
             }
@@ -50,7 +50,7 @@ namespace DataLayer
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = string.Format("UPDATE Bills SET Total = '{0}', Date = '{1}', Stuff_Id = '{2}' WHERE Id = '{3}'",b.Total, b.Date, b.Stuff_Id, b.Id);
+                sqlCommand.CommandText = string.Format("UPDATE Bills SET Total = '{0}', Date = '{1}', Stuff_Id = '{2}' WHERE Id = '{3}'", b.Total, b.Date, b.Stuff_Id, b.Id);
                 sqlConnection.Open();
                 return sqlCommand.ExecuteNonQuery();
             }
@@ -66,6 +66,20 @@ namespace DataLayer
                 return sqlCommand.ExecuteNonQuery();
             }
 
+        }
+        public int GetNewBillId()
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectionString))
+            {
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "SELECT IDENT_CURRENT('Bills')";
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                sqlDataReader.Read();
+                var result = Convert.ToInt32(sqlDataReader[0]);
+                return result;
+            }
         }
     }
 }
