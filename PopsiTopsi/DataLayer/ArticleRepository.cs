@@ -93,9 +93,5 @@ namespace DataLayer
                 
         }
 
-        public Article GetSelectedArticle(int id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
