@@ -1,18 +1,21 @@
 ﻿using DataLayer;
-using DataLayer.Models;
+using Shared;
+using Shared.BusinessInterface;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BusinessLayer
 {
-    public class BillItemBusiness
+    public class BillItemBusiness :IBillItemBusiness
     {
-        public readonly BillItemRepository billItemRepository;
+        public readonly IBillItemRepository billItemRepository;
 
-        public BillItemBusiness()
+        public BillItemBusiness(IBillItemRepository _billItemRepository)
         {
-            this.billItemRepository = new BillItemRepository();
+            this.billItemRepository = _billItemRepository;
         }
 
         public bool InsertBillItem(BillItem b)
@@ -28,7 +31,7 @@ namespace BusinessLayer
         {
             return this.billItemRepository.GetAllBillItems();
         }
-
+        
         public bool DeleteBillItem(int idBill, int idArticle)
         {
             if (this.billItemRepository.DeleteBillItem(idBill, idArticle) > 0)

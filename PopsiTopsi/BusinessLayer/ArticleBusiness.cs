@@ -1,5 +1,7 @@
 ﻿using DataLayer;
-using DataLayer.Models;
+using Shared;
+using Shared.BusinessInterface;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +9,18 @@ using System.Text;
 
 namespace BusinessLayer
 {
-    public class ArticleBusiness
+    public class ArticleBusiness :IArticleBusiness
     {
-        public readonly ArticleRepository articleRepository;
+        public readonly IArticleRepository articleRepository;
+        public readonly IBillItemRepository billitemRepository;
+     
 
-        public ArticleBusiness()
+        public ArticleBusiness(IArticleRepository _articleRepository, IBillItemRepository _billitemRepository)
         {
-            this.articleRepository = new ArticleRepository();
+            this.articleRepository = _articleRepository;
+            this.billitemRepository = _billitemRepository;
         }
+
         public bool InsertArticle(Article a)
         {
             if (this.articleRepository.InsertArticle(a) > 0)
@@ -44,6 +50,10 @@ namespace BusinessLayer
                 return false;
             }
         }
+        public bool IsArticleConnectedToBill(int articleId)
+        {
+            return this.billitemRepository.GetAllBillItems().Where(bi => bi.Article_Id == articleId).ToList().Count > 0;
+        }
         public bool UpdateArticle(Article a,int idSelected)
         {
             if (this.articleRepository.UpdateArticle(a,idSelected) > 0)
@@ -53,5 +63,6 @@ namespace BusinessLayer
             return false;
 
         }
+       
     }
 }

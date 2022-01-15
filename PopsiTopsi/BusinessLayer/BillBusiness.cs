@@ -1,18 +1,20 @@
 ﻿using DataLayer;
-using DataLayer.Models;
+using Shared;
+using Shared.BusinessInterface;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BusinessLayer
 {
-    public class BillBusiness
+    public class BillBusiness :IBillBusiness
     {
-        public readonly BillRepository billRepository;
+        public readonly IBillRepository billRepository;
 
-        public BillBusiness()
+        public BillBusiness(IBillRepository _billRepository)
         {
-            this.billRepository = new BillRepository();
+            this.billRepository = _billRepository;
         }
 
         public bool InsertBill(Bill b)

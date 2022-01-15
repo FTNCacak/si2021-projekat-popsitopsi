@@ -40,7 +40,6 @@ namespace PresentationLayer
             this.buttonMuffins = new System.Windows.Forms.Button();
             this.buttonPops = new System.Windows.Forms.Button();
             this.buttonBoxs = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonPay = new System.Windows.Forms.Button();
             this.panelArticles = new System.Windows.Forms.FlowLayoutPanel();
@@ -153,20 +152,6 @@ namespace PresentationLayer
             this.buttonBoxs.UseVisualStyleBackColor = false;
             this.buttonBoxs.Click += new System.EventHandler(this.buttonBoxs_Click);
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.button1.FlatAppearance.BorderSize = 3;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(852, 44);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(228, 43);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "KREIRAJ NOVI RAČUN";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
             // buttonDelete
             // 
             this.buttonDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -249,7 +234,6 @@ namespace PresentationLayer
             this.dgBill.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgBill.Size = new System.Drawing.Size(322, 341);
             this.dgBill.TabIndex = 20;
-            this.dgBill.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgBill_CellContentClick);
             // 
             // Id
             // 
@@ -302,7 +286,6 @@ namespace PresentationLayer
             this.Controls.Add(this.panelArticles);
             this.Controls.Add(this.buttonPay);
             this.Controls.Add(this.buttonDelete);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonBoxs);
             this.Controls.Add(this.buttonPops);
             this.Controls.Add(this.buttonMuffins);
@@ -312,6 +295,7 @@ namespace PresentationLayer
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.Text = "Main";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -331,7 +315,6 @@ namespace PresentationLayer
         private System.Windows.Forms.Button buttonMuffins;
         private System.Windows.Forms.Button buttonPops;
         private System.Windows.Forms.Button buttonBoxs;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonPay;
         private System.Windows.Forms.FlowLayoutPanel panelArticles;

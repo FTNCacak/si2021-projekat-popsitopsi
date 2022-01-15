@@ -1,5 +1,7 @@
 ﻿using DataLayer;
-using DataLayer.Models;
+using Shared;
+using Shared.BusinessInterface;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +9,13 @@ using System.Text;
 
 namespace BusinessLayer
 {
-    public class StuffBusiness
+    public class StuffBusiness :IStuffBusiness
     {
-        public readonly StuffRepository stuffRepository;
+        public readonly IStuffRepository stuffRepository;
 
-        public StuffBusiness()
+        public StuffBusiness(IStuffRepository _stuffRepository)
         {
-            this.stuffRepository = new StuffRepository();
+            this.stuffRepository = _stuffRepository;
         }
 
         public bool InsertStuff(Stuff s)

@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
-using DataLayer.Models;
+using Shared.BusinessInterface;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,16 +14,16 @@ namespace PresentationLayer
 {
     public partial class Bills : Form
     {
-        public readonly BillBusiness billBusiness;
-        public readonly BillItemBusiness billItemBusiness;
-        public readonly ArticleBusiness articleBusiness;
+        public readonly IBillBusiness billBusiness;
+        public readonly IBillItemBusiness billItemBusiness;
+        public readonly IArticleBusiness articleBusiness;
 
-        public Bills()
+        public Bills(IBillBusiness _billBusiness, IBillItemBusiness _billItemBusiness, IArticleBusiness _articleBusiness)
         {
             InitializeComponent();
-            this.billBusiness = new BillBusiness();
-            this.billItemBusiness = new BillItemBusiness();
-            this.articleBusiness = new ArticleBusiness();
+            this.billBusiness = _billBusiness;
+            this.billItemBusiness = _billItemBusiness;
+            this.articleBusiness = _articleBusiness;
         }
 
         private void Bills_Load(object sender, EventArgs e)

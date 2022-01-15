@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
-using DataLayer.Models;
+using Shared.BusinessInterface;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,22 +15,21 @@ namespace PresentationLayer
 
     public partial class Main : Form
     {
-        public readonly ArticleBusiness articleBusiness;
-        public readonly BillBusiness billBusiness;
-        public readonly BillItemBusiness billItemBusiness;
-        public readonly StuffBusiness stuffBusiness;
+        public readonly IArticleBusiness articleBusiness;
+        public readonly IBillBusiness billBusiness;
+        public readonly IBillItemBusiness billItemBusiness;
+        public readonly IStuffBusiness stuffBusiness;
 
 
 
-        public Main()
+        public Main(IArticleBusiness _articleBusiness,IBillBusiness _billBusiness,IBillItemBusiness _billItemBusiness,IStuffBusiness _stuffBusiness)
         {
 
             InitializeComponent();
-            this.articleBusiness = new ArticleBusiness();
-            this.billBusiness = new BillBusiness();
-            this.billItemBusiness = new BillItemBusiness();
-            this.stuffBusiness = new StuffBusiness();
-
+            this.articleBusiness = _articleBusiness;
+            this.billBusiness = _billBusiness;
+            this.billItemBusiness = _billItemBusiness;
+            this.stuffBusiness = _stuffBusiness;
         }
 
 
@@ -81,28 +81,24 @@ namespace PresentationLayer
             }
         }
 
-        private void prijavaZaposlenogToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Login lg = new Login();
-
-        }
+      
 
         private void artikliToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ArticleForm article = new ArticleForm();
+            ArticleForm article = new ArticleForm(articleBusiness,stuffBusiness);
             //this.Hide();
             article.ShowDialog();
         }
 
         private void zaposleniToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Stuffs stuffs = new Stuffs();
+            Stuffs stuffs = new Stuffs(stuffBusiness);
             stuffs.ShowDialog();
         }
 
         private void računiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bills bills = new Bills();
+            Bills bills = new Bills(billBusiness,billItemBusiness,articleBusiness);
             bills.ShowDialog();
         }
 
@@ -191,11 +187,7 @@ namespace PresentationLayer
             dgBill.Rows.RemoveAt(this.dgBill.SelectedRows[0].Index);
         }
 
-        private void dgBill_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+      
         private void buttonPay_Click(object sender, EventArgs e)
         {
             string bill="";
@@ -246,6 +238,11 @@ namespace PresentationLayer
             panel.Controls.Add(richTextBox1);
             panel.ShowDialog();
          
+        }
+
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using DataLayer.Models;
+﻿
+using Shared;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -6,7 +8,7 @@ using System.Text;
 
 namespace DataLayer
 {
-    public class BillRepository
+    public class BillRepository :IBillRepository
     {
         public List<Bill> GetAllBills()
         {

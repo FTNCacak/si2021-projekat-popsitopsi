@@ -1,4 +1,6 @@
-﻿using DataLayer.Models;
+﻿
+using Shared;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,8 +11,10 @@ using System.Text;
 
 namespace DataLayer
 {
-    public class ArticleRepository
+    public class ArticleRepository : IArticleRepository
     {
+        
+
         public List<Article> GetAllArticles()
         {
             List<Article> articles = new List<Article>();
@@ -87,6 +91,11 @@ namespace DataLayer
                 return sqlCommand.ExecuteNonQuery();
             }
                 
+        }
+
+        public Article GetSelectedArticle(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
