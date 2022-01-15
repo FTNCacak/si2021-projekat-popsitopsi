@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataLayer.Models
+namespace Shared.Models
 {
     public class Article
     {
@@ -10,7 +10,7 @@ namespace DataLayer.Models
         public string Name { get; set; }
         public string Type { get; set; }
         public decimal Price { get; set; }
-        public Byte[] Image { get; set; }
+        public String Image { get; set; }
         public string Description { get; set; }
 
     }
