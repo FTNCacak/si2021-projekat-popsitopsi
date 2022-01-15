@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
-using DataLayer.Models;
+using Shared.BusinessInterface;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,11 +13,19 @@ namespace PresentationLayer
 {
     public partial class Login : Form
     {
-        public readonly StuffBusiness stuffBusiness;
-        public Login()
+        public  string stuff;
+        public readonly IStuffBusiness stuffBusiness;
+        public readonly IArticleBusiness articleBusiness;
+        public readonly IBillBusiness billBusiness;
+        public readonly IBillItemBusiness billItemBusiness;
+      
+        public Login(IArticleBusiness _articleBusiness, IBillBusiness _billBusiness, IBillItemBusiness _billItemBusiness, IStuffBusiness _stuffBusiness)
         {
             InitializeComponent();
-            this.stuffBusiness = new StuffBusiness();
+            this.articleBusiness = _articleBusiness;
+            this.billBusiness = _billBusiness;
+            this.billItemBusiness = _billItemBusiness;
+            this.stuffBusiness = _stuffBusiness;
         }
 
         private void Login_Load(object sender, EventArgs e)
@@ -33,9 +42,11 @@ namespace PresentationLayer
             {
                 if(s.Username.Equals(username)&& s.Password.Equals(password))
                 {
-                Main main = new Main();
+                Main main = new Main(articleBusiness,billBusiness,billItemBusiness,stuffBusiness);
+                    PresentationLayer.Properties.Settings.Default.UserId = s.Id;
                 this.Hide();
                 main.ShowDialog();
+                
                 }
             }
 

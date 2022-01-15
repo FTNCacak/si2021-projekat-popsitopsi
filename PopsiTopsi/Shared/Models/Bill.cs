@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataLayer.Models
+namespace Shared.Models
 {
     public class Bill
     {
