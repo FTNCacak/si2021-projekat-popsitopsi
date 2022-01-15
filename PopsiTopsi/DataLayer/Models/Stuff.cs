@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shared.Models
+namespace DataLayer.Models
 {
     public class Stuff
     {

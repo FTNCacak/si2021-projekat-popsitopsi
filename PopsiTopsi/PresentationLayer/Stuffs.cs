@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace PresentationLayer
 {
-    public partial class BillPanel : Form
+    public partial class Stuffs : Form
     {
-        public BillPanel()
+        public Stuffs()
         {
             InitializeComponent();
         }
