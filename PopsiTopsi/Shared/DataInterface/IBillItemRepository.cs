@@ -12,5 +12,6 @@ namespace Shared
         public int InsertBillItem(BillItem bi);
         public int UpdateBillItem(BillItem bi);
         public int DeleteBillItem(int billId, int articleId);
+        
     }
 }

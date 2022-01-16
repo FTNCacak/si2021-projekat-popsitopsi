@@ -9,27 +9,25 @@ using System.Text;
 
 namespace DataLayerTest
 {
+    [TestClass]
     public class StuffRepositoryTest
     {
         public Stuff stuff;
         public IStuffRepository stuffRepository;
-
+        public List<int> listIDS = new List<int>();
 
         [TestInitialize]
         public void init()
         {
             stuff = new Stuff
             {
-                Id = 98978,
+                
                 Username = "dwwa",
-                Name = "Artikal broj 1",
-                Surname = "Artikal",
+                Name = "Stevo",
+                Surname = "Stevanovic",
                 Email = "ssimi009@gmail.com",
                 Password = "dadaf",
                 PhoneNumber = "924924",
-                
-       
-
             };
 
             stuffRepository = new StuffRepository();
@@ -39,6 +37,7 @@ namespace DataLayerTest
         public void GetAllStuffTest()
         {
             stuffRepository.InsertStuff(stuff);
+            listIDS.Add(stuffRepository.GetStuffNewId());
             Assert.IsNotNull(stuffRepository.GetAllStuffs());
         }
 
@@ -46,15 +45,28 @@ namespace DataLayerTest
         public void InsertStuffTest()
         {
             int result = stuffRepository.InsertStuff(stuff);
+            listIDS.Add(stuffRepository.GetStuffNewId());
             Assert.IsTrue(result > 0);
         }
-        [TestMethod]
+       [TestMethod]
         public void UpdateStuffTest()
         {
             stuffRepository.InsertStuff(stuff);
-            Stuff newStuff = stuffRepository.GetAllStuffs().Where(x => x.Id == stuff.Id).ToList()[0];
-            int result = stuffRepository.UpdateStuff(newStuff);
-            Assert.IsTrue(result > 0);
+            int newId = stuffRepository.GetStuffNewId();
+            stuff.Name = "Izmenjeni radnik!";
+            stuff.Id = newId;
+            listIDS.Add(newId);
+            stuffRepository.UpdateStuff(stuff);
+            string result = stuffRepository.GetAllStuffs().FirstOrDefault(x => x.Id == stuff.Id).Name;
+            Assert.AreEqual(result, "Izmenjeni radnik!");
+        }
+        [TestCleanup]
+        public void CleanUpAfterTest()
+        {
+            foreach (int item in listIDS)
+            {
+                stuffRepository.DeleteStuff(item);
+            }
         }
     }
 }

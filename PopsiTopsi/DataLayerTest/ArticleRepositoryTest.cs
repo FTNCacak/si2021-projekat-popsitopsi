@@ -15,28 +15,28 @@ namespace DataLayerTest
 
         public Article article;
         public IArticleRepository articleRepository;
+        public List<int> listIDS = new List<int>();
 
-       
         [TestInitialize]
         public void init()
         {
             article = new Article
             {
-                Id = 98978,
-                Name="Artikal 1",
-                Type="Tip broj 1",
-                Description="Opis broj 1",
-                Price=1000
-               
+
+                Name = "Artikal 1",
+                Type = "Tip broj 1",
+                Description = "Opis broj 1",
+                Price = 1000,
+
+
             };
-            
             articleRepository = new ArticleRepository();
-          
         }
         [TestMethod]
         public void GetAllArticlesTest()
         {
             articleRepository.InsertArticle(article);
+            listIDS.Add(articleRepository.GetNewArticleId());
             Assert.IsNotNull(articleRepository.GetAllArticles());
         }
 
@@ -44,19 +44,31 @@ namespace DataLayerTest
         public void InsertArticleTest()
         {
             int result = articleRepository.InsertArticle(article);
+            listIDS.Add(articleRepository.GetNewArticleId());
             Assert.IsTrue(result > 0);
+            
         }
+
         [TestMethod]
         public void UpdateArticleTest()
         {
-            articleRepository.InsertArticle(article) ;
-            Article newArticle = articleRepository.GetAllArticles().Where(x => x.Id == article.Id).ToList()[0];
-            int result = articleRepository.UpdateArticle(newArticle);
-            Assert.IsTrue(result > 0);
+            articleRepository.InsertArticle(article);
+            int newId = articleRepository.GetNewArticleId();
+            article.Name = "Izmenjeni artikal!";
+            article.Id = newId;
+            listIDS.Add(newId);
+            articleRepository.UpdateArticle(article);
+            string result = articleRepository.GetAllArticles().FirstOrDefault(x => x.Id == article.Id).Name;
+            Assert.AreEqual(result,"Izmenjeni artikal!");
         }
-
-     
-        
+        [TestCleanup]
+        public void CleanUpAfterTest()
+        {
+            foreach (int item in listIDS)
+            {
+                articleRepository.DeleteArticle(item);
+            }
+        }
     }
 
 }

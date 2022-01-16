@@ -12,5 +12,6 @@ namespace Shared
         public int InsertStuff(Stuff s);
         public int UpdateStuff(Stuff s);
         public int DeleteStuff(int id);
+        public int GetStuffNewId();
     }
 }

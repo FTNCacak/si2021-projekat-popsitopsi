@@ -35,7 +35,7 @@ namespace PresentationLayer
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            bool validate = false ;
+            bool validate = false;
             string username = tbUsername.Text;
             string password = tbPassword.Text;
             List<Stuff> list =stuffBusiness.GetAllStuffs();

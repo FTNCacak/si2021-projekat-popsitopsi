@@ -65,6 +65,11 @@ namespace BusinessLayer
             return false;
 
         }
-       
+        public int GetNewArticleId()
+        {
+            return this.articleRepository.GetNewArticleId();
+                
+        }
+
     }
 }

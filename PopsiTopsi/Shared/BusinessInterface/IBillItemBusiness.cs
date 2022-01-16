@@ -13,5 +13,6 @@ namespace Shared.BusinessInterface
         public bool DeleteBillItem(int idBill, int idArticle);
         public bool UpdateBillItem(BillItem b);
       
+
     }
 }

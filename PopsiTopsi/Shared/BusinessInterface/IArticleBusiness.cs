@@ -14,5 +14,6 @@ namespace Shared.BusinessInterface
         public bool UpdateArticle(Article a);
         public Article GetSelectedArticle(int id);
         public bool IsArticleConnectedToBill(int articleId);
+        public int GetNewArticleId();
     }
 }

@@ -56,7 +56,7 @@ namespace PresentationLayer
             this.dgvBills.AllowUserToDeleteRows = false;
             this.dgvBills.AllowUserToResizeColumns = false;
             this.dgvBills.AllowUserToResizeRows = false;
-            this.dgvBills.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvBills.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBills.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
@@ -71,7 +71,7 @@ namespace PresentationLayer
             this.Id,
             this.Date,
             this.Iznos});
-            this.dgvBills.Location = new System.Drawing.Point(45, 73);
+            this.dgvBills.Location = new System.Drawing.Point(12, 73);
             this.dgvBills.MultiSelect = false;
             this.dgvBills.Name = "dgvBills";
             this.dgvBills.ReadOnly = true;
@@ -88,9 +88,10 @@ namespace PresentationLayer
             this.dgvBills.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Castellar", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dgvBills.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.dgvBills.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvBills.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvBills.RowTemplate.Height = 25;
             this.dgvBills.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBills.Size = new System.Drawing.Size(285, 381);
+            this.dgvBills.Size = new System.Drawing.Size(372, 436);
             this.dgvBills.TabIndex = 12;
             this.dgvBills.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBills_CellContentClick);
             // 
@@ -99,14 +100,12 @@ namespace PresentationLayer
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
             this.Id.ReadOnly = true;
-            this.Id.Width = 56;
             // 
             // Date
             // 
             this.Date.HeaderText = "Datum";
             this.Date.Name = "Date";
             this.Date.ReadOnly = true;
-            this.Date.Width = 109;
             // 
             // Iznos
             // 
@@ -122,6 +121,7 @@ namespace PresentationLayer
             this.ClientSize = new System.Drawing.Size(396, 549);
             this.Controls.Add(this.dgvBills);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Bills";
             this.Text = "Bills";
             this.Load += new System.EventHandler(this.Bills_Load);

@@ -18,15 +18,19 @@ namespace PresentationLayer
     {
         public readonly IArticleBusiness articleBusiness;
         public readonly IStuffBusiness stuffBusiness;
+        public readonly IBillBusiness billBusiness;
+        public readonly IBillItemBusiness billItemBusiness;
         public OpenFileDialog dialog;
         public Image img;
         public byte[] byteimg;
    
-        public ArticleForm(IArticleBusiness _articleBusiness, IStuffBusiness _stuffBusiness)
+        public ArticleForm(IArticleBusiness _articleBusiness, IStuffBusiness _stuffBusiness, IBillBusiness _billBusiness, IBillItemBusiness _billItemBusines)
         {
             InitializeComponent();
             articleBusiness = _articleBusiness;
             stuffBusiness = _stuffBusiness;
+            billBusiness = _billBusiness;
+            billItemBusiness = _billItemBusines;
           
         }
         public void UpdateDataGrid()
@@ -64,13 +68,24 @@ namespace PresentationLayer
                 }
             }
             type = String.Join(",", list.ToArray());
-           
             Article article = new Article();
-            article.Name = tbArticalName.Text;
-            article.Price = Decimal.Parse(tbArticalPrice.Text);
-            article.Type = type;
-            article.Description = tbArticalDescription.Text;
-            article.Image = Convert.ToBase64String(byteimg);
+                try
+                {
+                    
+                    article.Name = tbArticalName.Text;
+                    article.Price = Decimal.Parse(tbArticalPrice.Text);
+                    article.Type = type;
+                    article.Description = tbArticalDescription.Text;
+                    if(byteimg!=null)
+                    article.Image = Convert.ToBase64String(byteimg);
+    
+                }
+                catch (Exception ex)
+                {
+                   
+                    MessageBox.Show("Greska pri unosu podataka!");
+                    return;
+                };
 
             bool result = this.articleBusiness.InsertArticle(article);
             if (result)
@@ -110,6 +125,7 @@ namespace PresentationLayer
             {
                 if (openFile.ShowDialog() == DialogResult.OK)
                 {
+                    lblFileName.Visible = false;
                     lblFileName.Text = openFile.FileName;
                     img = Image.FromFile(lblFileName.Text);
                     byteimg = ConvertImageToBinary(img);
@@ -169,6 +185,7 @@ namespace PresentationLayer
                 article.Price = Decimal.Parse(tbArticalPrice.Text);
                 article.Type = type;
                 article.Description = tbArticalDescription.Text;
+                if(byteimg!=null)
                 article.Image = Convert.ToBase64String(byteimg);
                 bool result = articleBusiness.UpdateArticle(article);
                 if (result)
@@ -198,7 +215,8 @@ namespace PresentationLayer
             tbArticalPrice.Text = article.Price.ToString();
             tbArticalDescription.Text = article.Description;
             byteimg = Convert.FromBase64String(article.Image);
-            pictureBox1.Image = ConvertBinaryToImage(Convert.FromBase64String(article.Image));
+            if(article.Image!="")
+                pictureBox1.Image = ConvertBinaryToImage(Convert.FromBase64String(article.Image));
             if (article.Type.Contains("POPSI"))
                 cbPops.Checked = true;
             else
@@ -214,6 +232,14 @@ namespace PresentationLayer
                 cbBox.Checked = true;
             else
                 cbBox.Checked = false;
+        }
+
+        private void ArticleForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
+            //Main main = new Main(articleBusiness, billBusiness,billItemBusiness,stuffBusiness);
+           // main.Main_Load();
+            
         }
     }
 }

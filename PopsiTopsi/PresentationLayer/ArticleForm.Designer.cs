@@ -217,7 +217,6 @@ namespace PresentationLayer
             this.label5.Size = new System.Drawing.Size(88, 25);
             this.label5.TabIndex = 16;
             this.label5.Text = "SLIKA:";
-          
             // 
             // tbArticalDescription
             // 
@@ -336,7 +335,6 @@ namespace PresentationLayer
             this.dgArticles.Size = new System.Drawing.Size(449, 310);
             this.dgArticles.TabIndex = 19;
             this.dgArticles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgArticles_CellClick);
-            
             // 
             // Id
             // 
@@ -383,8 +381,10 @@ namespace PresentationLayer
             this.Controls.Add(this.btnArticalChange);
             this.Controls.Add(this.btnArticalAdd);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ArticleForm";
             this.Text = "Artikli";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ArticleForm_FormClosed);
             this.Load += new System.EventHandler(this.Articals_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

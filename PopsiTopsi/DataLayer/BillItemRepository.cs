@@ -61,11 +61,12 @@ namespace DataLayer
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = string.Format("DELETE FROM BillItems WHERE BillId = '{0}'AND ArticleId='{1}'", BillId, ArticleId);
+                sqlCommand.CommandText = string.Format("DELETE FROM BillItems WHERE Bill_Id = '{0}'AND Article_Id='{1}'", BillId, ArticleId);
                 sqlConnection.Open();
                 return sqlCommand.ExecuteNonQuery();
             }
 
         }
+        
     }
 }

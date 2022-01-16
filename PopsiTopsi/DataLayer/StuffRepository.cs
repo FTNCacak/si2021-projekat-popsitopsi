@@ -74,5 +74,19 @@ namespace DataLayer
             }
 
         }
+        public int GetStuffNewId()
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectionString))
+            {
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "SELECT IDENT_CURRENT('Stuffs')";
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                sqlDataReader.Read();
+                var result = Convert.ToInt32(sqlDataReader[0]);
+                return result;
+            }
+        }
     }
 }
