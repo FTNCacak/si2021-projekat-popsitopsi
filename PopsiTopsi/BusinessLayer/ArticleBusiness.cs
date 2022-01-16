@@ -14,7 +14,9 @@ namespace BusinessLayer
         public readonly IArticleRepository articleRepository;
         public readonly IBillItemRepository billitemRepository;
      
-
+        public ArticleBusiness(IArticleRepository _articleRepository)
+        {this.articleRepository = _articleRepository;
+        }
         public ArticleBusiness(IArticleRepository _articleRepository, IBillItemRepository _billitemRepository)
         {
             this.articleRepository = _articleRepository;

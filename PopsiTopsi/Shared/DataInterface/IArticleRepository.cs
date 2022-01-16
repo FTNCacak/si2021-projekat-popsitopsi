@@ -12,6 +12,5 @@ namespace Shared
         public int InsertArticle(Article a);
         public int UpdateArticle(Article a, int id);
         public int DeleteArticle(int id);
-        public Article GetSelectedArticle(int id);
     }
 }
