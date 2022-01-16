@@ -56,9 +56,9 @@ namespace BusinessLayer
         {
             return this.billitemRepository.GetAllBillItems().Where(bi => bi.Article_Id == articleId).ToList().Count > 0;
         }
-        public bool UpdateArticle(Article a,int idSelected)
+        public bool UpdateArticle(Article a)
         {
-            if (this.articleRepository.UpdateArticle(a,idSelected) > 0)
+            if (this.articleRepository.UpdateArticle(a) > 0)
             {
                 return true;
             }

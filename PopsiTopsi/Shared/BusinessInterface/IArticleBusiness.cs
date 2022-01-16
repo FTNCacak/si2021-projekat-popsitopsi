@@ -11,7 +11,7 @@ namespace Shared.BusinessInterface
         public bool InsertArticle(Article a);
         public List<Article> GetAllArticles();
         public bool DeleteArticle(int idSelected);
-        public bool UpdateArticle(Article a, int idSelected);
+        public bool UpdateArticle(Article a);
         public Article GetSelectedArticle(int id);
         public bool IsArticleConnectedToBill(int articleId);
     }

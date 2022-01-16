@@ -44,16 +44,6 @@ namespace PresentationLayer
             cbMuffin.Checked = false;
             cbPops.Checked = false;
         }
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Articals_Load(object sender, EventArgs e)
         {
             dgArticles.AutoGenerateColumns = false;
@@ -74,16 +64,14 @@ namespace PresentationLayer
                 }
             }
             type = String.Join(",", list.ToArray());
-            try { 
+           
             Article article = new Article();
             article.Name = tbArticalName.Text;
             article.Price = Decimal.Parse(tbArticalPrice.Text);
             article.Type = type;
             article.Description = tbArticalDescription.Text;
             article.Image = Convert.ToBase64String(byteimg);
-            
-                
-                
+
             bool result = this.articleBusiness.InsertArticle(article);
             if (result)
                 MessageBox.Show("Uspesan unos artikla!");
@@ -91,11 +79,8 @@ namespace PresentationLayer
                 MessageBox.Show("Unos artikala nije uspesan!");
             UpdateDataGrid();
             DeleteTextBox();
-            }
-                catch
-                {
-                    MessageBox.Show("Unosite validne podatke!");
-                }
+            
+                
             }
             else
             {
@@ -133,8 +118,78 @@ namespace PresentationLayer
                 }
             }
         }
+        private void btnArticalDelete_Click(object sender, EventArgs e)
+        {
+            if (PresentationLayer.Properties.Settings.Default.UserId == 1003)
+            {
+               
+                int idSelect = Convert.ToInt32(dgArticles.SelectedRows[0].Cells["Id"].Value.ToString());
+                 if(articleBusiness.IsArticleConnectedToBill(idSelect)==true)
+                {
+                    MessageBox.Show("Ne mozete izbrisati ovu stavku jer se nalazi na racunu!");
+                }
+                 else
+                {
+                    bool result = this.articleBusiness.DeleteArticle(idSelect);
+                    if (result)
+                    {
+                        MessageBox.Show("Uspesno brisanje!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Neuspesno brisanje!");
+                    }
+                UpdateDataGrid();
+                DeleteTextBox();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Morate se prijaviti kao admin da bi brisali!");
+            }
+        }
 
-        private void dgArticles_Cell(object sender, DataGridViewCellEventArgs e)
+        private void btnArticalChange_Click(object sender, EventArgs e)
+        {
+            if (PresentationLayer.Properties.Settings.Default.UserId == 1003)
+            { 
+                string type;
+                List<String> list = new List<String>();
+                foreach (CheckBox cb in panel1.Controls.OfType<CheckBox>())
+                {
+                    if (cb.Checked)
+                    {
+                        list.Add(cb.Text);
+                    }
+                }
+                type = String.Join(",", list.ToArray());
+                int idSelect = Convert.ToInt32(dgArticles.SelectedRows[0].Cells["Id"].Value.ToString());
+                Article article = articleBusiness.GetSelectedArticle(idSelect);
+                article.Name = tbArticalName.Text;
+                article.Price = Decimal.Parse(tbArticalPrice.Text);
+                article.Type = type;
+                article.Description = tbArticalDescription.Text;
+                article.Image = Convert.ToBase64String(byteimg);
+                bool result = articleBusiness.UpdateArticle(article);
+                if (result)
+                {
+                    MessageBox.Show("Uspesna izmena!");
+                }
+                else
+                {
+                    MessageBox.Show("Izmena nije uspesna!");
+                }
+                UpdateDataGrid();
+                DeleteTextBox();
+            }
+            else
+            {
+                MessageBox.Show("Morate se prijaviti kao admin da bi menjali artikle!");
+            }
+        
+        }
+
+        private void dgArticles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int idSelect = Convert.ToInt32(dgArticles.SelectedRows[0].Cells["Id"].Value.ToString());
 
@@ -159,79 +214,6 @@ namespace PresentationLayer
                 cbBox.Checked = true;
             else
                 cbBox.Checked = false;
-        }
-
-        private void btnArticalDelete_Click(object sender, EventArgs e)
-        {
-            if (PresentationLayer.Properties.Settings.Default.UserId == 1003)
-            {
-               
-                int idSelect = Convert.ToInt32(dgArticles.SelectedRows[0].Cells["Id"].Value.ToString());
-                 if(articleBusiness.IsArticleConnectedToBill(idSelect)==true)
-                {
-                    MessageBox.Show("Ne mozete izbrisati ovu stavku jer se nalazi na racunu!");
-                }
-                 else
-                {
-
-                
-                bool result = this.articleBusiness.DeleteArticle(idSelect);
-                if (result)
-                {
-                    MessageBox.Show("Uspesno brisanje!");
-                }
-                else
-                {
-                    MessageBox.Show("Neuspesno brisanje!");
-                }
-                UpdateDataGrid();
-                DeleteTextBox();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Morate se prijaviti kao admin da bi brisali!");
-            }
-        }
-
-        private void btnArticalChange_Click(object sender, EventArgs e)
-        {
-            if (PresentationLayer.Properties.Settings.Default.UserId == 1003)
-            { 
-                string type;
-            List<String> list = new List<String>();
-            foreach (CheckBox cb in panel1.Controls.OfType<CheckBox>())
-            {
-                if (cb.Checked)
-                {
-                    list.Add(cb.Text);
-                }
-            }
-            type = String.Join(",", list.ToArray());
-            int idSelect = Convert.ToInt32(dgArticles.SelectedRows[0].Cells["Id"].Value.ToString());
-            Article article = new Article();
-            article.Name = tbArticalName.Text;
-            article.Price = Decimal.Parse(tbArticalPrice.Text);
-            article.Type = type;
-            article.Description = tbArticalDescription.Text;
-            article.Image = Convert.ToBase64String(byteimg);
-            bool result = articleBusiness.UpdateArticle(article, idSelect);
-            if (result)
-            {
-                MessageBox.Show("Uspesna izmena!");
-            }
-            else
-            {
-                MessageBox.Show("Izmena nije uspesna!");
-            }
-            UpdateDataGrid();
-            DeleteTextBox();
-        }
-            else
-            {
-                MessageBox.Show("Morate se prijaviti kao admin da bi menjali artikle!");
-            }
-        
         }
     }
 }

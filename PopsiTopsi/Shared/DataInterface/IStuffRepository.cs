@@ -10,7 +10,7 @@ namespace Shared
     {
         public List<Stuff> GetAllStuffs();
         public int InsertStuff(Stuff s);
-        public int UpdateStuff(Stuff s, int id);
+        public int UpdateStuff(Stuff s);
         public int DeleteStuff(int id);
     }
 }

@@ -68,10 +68,10 @@ namespace BusinessLayerTest
         [TestMethod]
         public void UpdateBillTest()
         {
-            mockStuffRepository.Setup(x => x.UpdateStuff(stuff1,stuff1.Id)).Returns(1);
+            mockStuffRepository.Setup(x => x.UpdateStuff(stuff1)).Returns(1);
             this.stuffBusiness = new StuffBusiness(mockStuffRepository.Object);
 
-            var result = stuffBusiness.UpdateStuff(stuff1, stuff1.Id);
+            var result = stuffBusiness.UpdateStuff(stuff1 );
 
             Assert.AreEqual(result, true);
         }
