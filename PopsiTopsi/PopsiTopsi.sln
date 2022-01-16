@@ -13,7 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0368A072
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{C350531C-6323-4642-BEC9-E6EC9E7C3E4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayerTest", "BusinessLayerTest\BusinessLayerTest.csproj", "{5D75BE40-EF3F-48F5-A2AB-E6D19D6BBF58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayerTest", "BusinessLayerTest\BusinessLayerTest.csproj", "{5D75BE40-EF3F-48F5-A2AB-E6D19D6BBF58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayerTest", "DataLayerTest\DataLayerTest.csproj", "{2EB194F0-7A6D-4A81-8C50-AC9CE9D02C86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,12 +43,17 @@ Global
 		{5D75BE40-EF3F-48F5-A2AB-E6D19D6BBF58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D75BE40-EF3F-48F5-A2AB-E6D19D6BBF58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D75BE40-EF3F-48F5-A2AB-E6D19D6BBF58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EB194F0-7A6D-4A81-8C50-AC9CE9D02C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EB194F0-7A6D-4A81-8C50-AC9CE9D02C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EB194F0-7A6D-4A81-8C50-AC9CE9D02C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EB194F0-7A6D-4A81-8C50-AC9CE9D02C86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5D75BE40-EF3F-48F5-A2AB-E6D19D6BBF58} = {0368A072-E52B-4919-9152-B45318EA03F0}
+		{2EB194F0-7A6D-4A81-8C50-AC9CE9D02C86} = {0368A072-E52B-4919-9152-B45318EA03F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EEEEC045-5F44-4626-ADB0-0DBD9B4A38E8}

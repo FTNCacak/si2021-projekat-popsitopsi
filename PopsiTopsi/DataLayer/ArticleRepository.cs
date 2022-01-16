@@ -13,7 +13,10 @@ namespace DataLayer
 {
     public class ArticleRepository : IArticleRepository
     {
-        
+        public ArticleRepository()
+        {
+
+        }
 
         public List<Article> GetAllArticles()
         {

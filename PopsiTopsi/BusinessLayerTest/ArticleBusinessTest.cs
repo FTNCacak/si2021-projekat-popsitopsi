@@ -78,15 +78,15 @@ namespace BusinessLayerTest
         [TestMethod]
         public void UpdateArticleTest()
         {
-            mockArticleRepository.Setup(x => x.UpdateArticle(article1,article1.Id)).Returns(1);
+            mockArticleRepository.Setup(x => x.UpdateArticle(article1)).Returns(1);
             this.articleBusiness = new ArticleBusiness(mockArticleRepository.Object);
 
-            var result = articleBusiness.UpdateArticle(article1, article1.Id);
+            var result = articleBusiness.UpdateArticle(article1);
             Assert.AreEqual(result, true);
         }
 
         [TestMethod]
-        public void InsertBillTest()
+        public void InsertArticleTest()
         {
             mockArticleRepository.Setup(x => x.InsertArticle(article1)).Returns(1);
             this.articleBusiness = new ArticleBusiness(mockArticleRepository.Object);
