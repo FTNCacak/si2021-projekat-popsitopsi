@@ -112,7 +112,7 @@ namespace PresentationLayer
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Castellar", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(25, 313);
+            this.label5.Location = new System.Drawing.Point(25, 325);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(95, 25);
             this.label5.TabIndex = 5;
@@ -121,6 +121,7 @@ namespace PresentationLayer
             // tbStuffName
             // 
             this.tbStuffName.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbStuffName.Font = new System.Drawing.Font("Castellar", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbStuffName.Location = new System.Drawing.Point(282, 28);
             this.tbStuffName.Multiline = true;
             this.tbStuffName.Name = "tbStuffName";
@@ -130,6 +131,7 @@ namespace PresentationLayer
             // tbStuffSurname
             // 
             this.tbStuffSurname.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbStuffSurname.Font = new System.Drawing.Font("Castellar", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbStuffSurname.Location = new System.Drawing.Point(282, 81);
             this.tbStuffSurname.Multiline = true;
             this.tbStuffSurname.Name = "tbStuffSurname";
@@ -139,6 +141,7 @@ namespace PresentationLayer
             // tbStuffUsername
             // 
             this.tbStuffUsername.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbStuffUsername.Font = new System.Drawing.Font("Castellar", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbStuffUsername.Location = new System.Drawing.Point(282, 138);
             this.tbStuffUsername.Multiline = true;
             this.tbStuffUsername.Name = "tbStuffUsername";
@@ -148,6 +151,7 @@ namespace PresentationLayer
             // tbStuffPassword
             // 
             this.tbStuffPassword.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbStuffPassword.Font = new System.Drawing.Font("Castellar", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbStuffPassword.Location = new System.Drawing.Point(282, 193);
             this.tbStuffPassword.Multiline = true;
             this.tbStuffPassword.Name = "tbStuffPassword";
@@ -158,6 +162,7 @@ namespace PresentationLayer
             // tbStuffPhone
             // 
             this.tbStuffPhone.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbStuffPhone.Font = new System.Drawing.Font("Castellar", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbStuffPhone.Location = new System.Drawing.Point(282, 249);
             this.tbStuffPhone.Multiline = true;
             this.tbStuffPhone.Name = "tbStuffPhone";
@@ -167,10 +172,11 @@ namespace PresentationLayer
             // tbStuffEmail
             // 
             this.tbStuffEmail.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbStuffEmail.Font = new System.Drawing.Font("Castellar", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbStuffEmail.Location = new System.Drawing.Point(282, 304);
             this.tbStuffEmail.Multiline = true;
             this.tbStuffEmail.Name = "tbStuffEmail";
-            this.tbStuffEmail.Size = new System.Drawing.Size(186, 34);
+            this.tbStuffEmail.Size = new System.Drawing.Size(186, 46);
             this.tbStuffEmail.TabIndex = 11;
             // 
             // dgStuffs
@@ -217,7 +223,7 @@ namespace PresentationLayer
             this.dgStuffs.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgStuffs.RowTemplate.Height = 25;
             this.dgStuffs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgStuffs.Size = new System.Drawing.Size(513, 310);
+            this.dgStuffs.Size = new System.Drawing.Size(513, 322);
             this.dgStuffs.TabIndex = 12;
             this.dgStuffs.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgStuffs_CellMouseClick);
             // 

@@ -51,13 +51,13 @@ namespace DataLayer
             }
 
         }
-        public int UpdateStuff(Stuff s,int idSelected)
+        public int UpdateStuff(Stuff s)
         {
             using (SqlConnection sqlConnection = new SqlConnection(Constants.connectionString))
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = string.Format("UPDATE Stuffs SET  Name = '{0}', Surname = '{1}', Username = '{2}', Password = '{3}', PhoneNumber = '{4}', Email = '{5}' WHERE Id = '{6}'",s.Name, s.Surname, s.Username, s.Password, s.PhoneNumber, s.Email, idSelected);
+                sqlCommand.CommandText = string.Format("UPDATE Stuffs SET  Name = '{0}', Surname = '{1}', Username = '{2}', Password = '{3}', PhoneNumber = '{4}', Email = '{5}' WHERE Id = '{6}'",s.Name, s.Surname, s.Username, s.Password, s.PhoneNumber, s.Email, s.Id);
                 sqlConnection.Open();
                 return sqlCommand.ExecuteNonQuery();
             }

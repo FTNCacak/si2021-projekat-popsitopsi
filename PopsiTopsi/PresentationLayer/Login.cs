@@ -35,6 +35,7 @@ namespace PresentationLayer
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+            bool validate = false ;
             string username = tbUsername.Text;
             string password = tbPassword.Text;
             List<Stuff> list =stuffBusiness.GetAllStuffs();
@@ -42,15 +43,26 @@ namespace PresentationLayer
             {
                 if(s.Username.Equals(username)&& s.Password.Equals(password))
                 {
+                    validate = true;
                 Main main = new Main(articleBusiness,billBusiness,billItemBusiness,stuffBusiness);
                     PresentationLayer.Properties.Settings.Default.UserId = s.Id;
                 this.Hide();
                 main.ShowDialog();
                 
                 }
+                else
+                {
+                    validate = false;
+                }
             }
 
-           
+            if(validate==false)
+            {
+                MessageBox.Show("Uneli ste pogresne podatke za prijavu!");
+                tbUsername.Text = "";
+                tbPassword.Text = "";
+            }
+            
         }
 
         private void textBoxPass_TextChanged(object sender, EventArgs e)

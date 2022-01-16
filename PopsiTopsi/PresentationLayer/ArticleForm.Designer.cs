@@ -217,11 +217,12 @@ namespace PresentationLayer
             this.label5.Size = new System.Drawing.Size(88, 25);
             this.label5.TabIndex = 16;
             this.label5.Text = "SLIKA:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+          
             // 
             // tbArticalDescription
             // 
             this.tbArticalDescription.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbArticalDescription.Font = new System.Drawing.Font("Castellar", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbArticalDescription.Location = new System.Drawing.Point(132, 281);
             this.tbArticalDescription.Multiline = true;
             this.tbArticalDescription.Name = "tbArticalDescription";
@@ -231,19 +232,21 @@ namespace PresentationLayer
             // tbArticalPrice
             // 
             this.tbArticalPrice.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbArticalPrice.Font = new System.Drawing.Font("Castellar", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbArticalPrice.Location = new System.Drawing.Point(132, 77);
             this.tbArticalPrice.Multiline = true;
             this.tbArticalPrice.Name = "tbArticalPrice";
-            this.tbArticalPrice.Size = new System.Drawing.Size(143, 25);
+            this.tbArticalPrice.Size = new System.Drawing.Size(251, 25);
             this.tbArticalPrice.TabIndex = 14;
             // 
             // tbArticalName
             // 
             this.tbArticalName.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbArticalName.Font = new System.Drawing.Font("Castellar", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbArticalName.Location = new System.Drawing.Point(132, 19);
             this.tbArticalName.Multiline = true;
             this.tbArticalName.Name = "tbArticalName";
-            this.tbArticalName.Size = new System.Drawing.Size(143, 25);
+            this.tbArticalName.Size = new System.Drawing.Size(251, 25);
             this.tbArticalName.TabIndex = 13;
             // 
             // btnArticalAdd
@@ -332,7 +335,8 @@ namespace PresentationLayer
             this.dgArticles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgArticles.Size = new System.Drawing.Size(449, 310);
             this.dgArticles.TabIndex = 19;
-            this.dgArticles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgArticles_Cell);
+            this.dgArticles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgArticles_CellClick);
+            
             // 
             // Id
             // 

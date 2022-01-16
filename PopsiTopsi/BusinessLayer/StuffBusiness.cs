@@ -49,9 +49,9 @@ namespace BusinessLayer
             }
         }
 
-        public bool UpdateStuff(Stuff s,int idSelected)
+        public bool UpdateStuff(Stuff s)
         {
-            if (this.stuffRepository.UpdateStuff(s,idSelected) > 0)
+            if (this.stuffRepository.UpdateStuff(s) > 0)
             {
                 return true;
             }

@@ -101,7 +101,7 @@ namespace PresentationLayer
             if (PresentationLayer.Properties.Settings.Default.UserId == 1003)
             {
              int idSelect = Convert.ToInt32(dgStuffs.SelectedRows[0].Cells["Id"].Value.ToString());
-                        Stuff stuff = new Stuff();
+                Stuff stuff = stuffBusiness.GetSelectedStuff(idSelect);
                         stuff.Name = tbStuffName.Text;
                         stuff.Surname = tbStuffSurname.Text;
                         stuff.Username = tbStuffUsername.Text;
@@ -109,7 +109,7 @@ namespace PresentationLayer
                         stuff.Email = tbStuffEmail.Text;
                         stuff.PhoneNumber = tbStuffPhone.Text;
 
-                        bool result = this.stuffBusiness.UpdateStuff(stuff,idSelect);
+                        bool result = this.stuffBusiness.UpdateStuff(stuff);
                         if (result)
                             MessageBox.Show("Uspesna izmena!");
                         else

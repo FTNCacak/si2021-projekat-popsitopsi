@@ -10,7 +10,7 @@ namespace Shared
     {
         public List<Article> GetAllArticles();
         public int InsertArticle(Article a);
-        public int UpdateArticle(Article a, int id);
+        public int UpdateArticle(Article a);
         public int DeleteArticle(int id);
     }
 }

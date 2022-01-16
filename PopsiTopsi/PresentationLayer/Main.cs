@@ -98,7 +98,7 @@ namespace PresentationLayer
 
         private void računiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bills bills = new Bills(billBusiness,billItemBusiness,articleBusiness);
+            Bills bills = new Bills(billBusiness,billItemBusiness,articleBusiness,stuffBusiness);
             bills.ShowDialog();
         }
 
@@ -106,6 +106,10 @@ namespace PresentationLayer
         {
             panelArticles.Controls.Clear();
             buttonDonuts.BackColor = Color.Silver;
+            buttonMuffins.BackColor = Color.FromArgb(255, 192, 192);
+            buttonBoxs.BackColor = Color.FromArgb(255, 192, 192);
+            buttonPops.BackColor = Color.FromArgb(255, 192, 192);
+
             List<Article> list = this.articleBusiness.GetAllArticles();
             foreach (Article a in list)
             {
@@ -120,7 +124,6 @@ namespace PresentationLayer
             }
 
         }
-
         private void buttonMuffins_Click(object sender, EventArgs e)
         {
             panelArticles.Controls.Clear();
@@ -169,6 +172,9 @@ namespace PresentationLayer
         {
             panelArticles.Controls.Clear();
             buttonBoxs.BackColor = Color.Silver;
+            buttonMuffins.BackColor = Color.FromArgb(255, 192, 192);
+            buttonDonuts.BackColor = Color.FromArgb(255, 192, 192);
+            buttonPops.BackColor = Color.FromArgb(255, 192, 192);
             List<Article> list = this.articleBusiness.GetAllArticles();
             foreach (Article a in list)
             {
@@ -190,11 +196,7 @@ namespace PresentationLayer
       
         private void buttonPay_Click(object sender, EventArgs e)
         {
-            string bill="";
-            TextBox richTextBox1 = new TextBox();
-            richTextBox1.Font = new Font("Consolas", 12, FontStyle.Regular);
-            richTextBox1.Multiline = true;
-            richTextBox1.Size = new System.Drawing.Size(360, 670);
+           
 
             int sum = 0;
             for (int i = 0; i < dgBill.Rows.Count; ++i)
@@ -203,41 +205,26 @@ namespace PresentationLayer
             }
 
             Bill b = new Bill();
-            b.Stuff_Id = 1003;
+            b.Stuff_Id = PresentationLayer.Properties.Settings.Default.UserId;
             b.Date = DateTime.Now;
             b.Total = sum;
             this.billBusiness.InsertBill(b);
-            
+            b.Id = billBusiness.GetNewBillId();
+
+            Stuff s = stuffBusiness.GetAllStuffs().FirstOrDefault(s => s.Id == b.Stuff_Id);
+
             BillItem bi = new BillItem();
             foreach (DataGridViewRow row in dgBill.Rows)
             {
-                b.Id= this.billBusiness.GetNewBillId();
+
                 bi.Bill_Id = b.Id;
                 bi.Article_Id = Convert.ToInt32(dgBill.Rows[row.Index].Cells["Id"].Value);
                 bi.Quantity= Convert.ToInt32(dgBill.Rows[row.Index].Cells["Quantity"].Value);
                 this.billItemBusiness.InsertBillItem(bi);
             }
-            List<BillItem> billItems = billItemBusiness.GetAllBillItems().Where(s=>s.Bill_Id == this.billBusiness.GetNewBillId()).ToList();
-            bill += "-------------------------------------\n\n";
-            bill += "\t\t FISKALNI RACUN\n\n";
-            bill += "\t  " + String.Format("{0:d/M/yyyy}", b.Date) + "    " + String.Format("{0:HH:mm:ss}", b.Date) + "\n";
-            bill += "-------------------------------------\n\n";
-
-            foreach (BillItem bit in billItems)
-            {
-                Article article = articleBusiness.GetAllArticles().FirstOrDefault(a => a.Id == bit.Article_Id);
-               bill += article.Name + "\n";
-                bill += "\t   " + bit.Quantity + " x " + article.Price + "\t"  + "din.\n";
-            }
-            bill += "-------------------------------------\n\n";
-            bill += "\tTotal : \t\t\t" + b.Total + "din.\n";
-            bill += "-------------------------------------\n\n";
-       
-            richTextBox1.Text = bill;
-            BillPanel panel = new BillPanel();
-            panel.Controls.Add(richTextBox1);
-            panel.ShowDialog();
-         
+            BillPanel bp = new BillPanel(b,billItemBusiness,articleBusiness,s.Username);
+            bp.ShowDialog();
+            dgBill.Rows.Clear();
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)

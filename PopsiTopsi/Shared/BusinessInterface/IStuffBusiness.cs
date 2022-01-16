@@ -11,7 +11,7 @@ namespace Shared.BusinessInterface
         public bool InsertStuff(Stuff s);
         public List<Stuff> GetAllStuffs();
         public bool DeleteStuff(int idSelected);
-        public bool UpdateStuff(Stuff s, int idSelected);
+        public bool UpdateStuff(Stuff s);
         public Stuff GetSelectedStuff(int idSelected);
 
     }
