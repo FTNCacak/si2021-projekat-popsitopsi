@@ -18,10 +18,12 @@ namespace PresentationLayer
             InitializeComponent();
             article = a;
             lblName.Text = a.Name;
+           
             lblPrice.Text = "Cena: "+ a.Price.ToString();
-            //MemoryStream mstream = new MemoryStream(a.Image);
-            //s pbPhoto.Image = System.Drawing.Image.FromStream(mstream);
+            if(a.Image!="")
             pbPhoto.Image = ConvertBinaryToImage(Convert.FromBase64String(a.Image));
+            
+            
         }
 
         Image ConvertBinaryToImage(byte[] data)

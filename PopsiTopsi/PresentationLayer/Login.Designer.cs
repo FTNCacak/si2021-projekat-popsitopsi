@@ -124,6 +124,7 @@ namespace PresentationLayer
             this.Controls.Add(this.labelUsername);
             this.Controls.Add(this.labelTittle);
             this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Login";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);

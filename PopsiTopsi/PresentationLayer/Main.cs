@@ -39,6 +39,7 @@ namespace PresentationLayer
         }
         public void FillMainForm()
         {
+            panelArticles.Controls.Clear();
             List<Article> list = this.articleBusiness.GetAllArticles();
             foreach (Article a in list)
             {
@@ -85,9 +86,12 @@ namespace PresentationLayer
 
         private void artikliToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ArticleForm article = new ArticleForm(articleBusiness,stuffBusiness);
-            //this.Hide();
+            ArticleForm article = new ArticleForm(articleBusiness,stuffBusiness,billBusiness,billItemBusiness);
+           
             article.ShowDialog();
+         
+
+            FillMainForm();
         }
 
         private void zaposleniToolStripMenuItem_Click(object sender, EventArgs e)

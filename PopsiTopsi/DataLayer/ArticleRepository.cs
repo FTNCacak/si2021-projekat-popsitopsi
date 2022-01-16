@@ -46,17 +46,7 @@ namespace DataLayer
             }
             return articles;
         }
-        public  byte[] ReadAllBytes( Stream instream)
-        {
-            if (instream is MemoryStream)
-                return ((MemoryStream)instream).ToArray();
-
-            using (var memoryStream = new MemoryStream())
-            {
-                instream.CopyTo(memoryStream);
-                return memoryStream.ToArray();
-            }
-        }
+     
         public int InsertArticle(Article a)
         {
             using (SqlConnection sqlConnection = new SqlConnection(Constants.connectionString))
@@ -95,6 +85,19 @@ namespace DataLayer
             }
                 
         }
-
+        public int GetNewArticleId()
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(Constants.connectionString))
+            {
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "SELECT IDENT_CURRENT('Articles')";
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                sqlDataReader.Read();
+                var result = Convert.ToInt32(sqlDataReader[0]);
+                return result;
+            }
+        }
     }
 }

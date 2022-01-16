@@ -14,5 +14,6 @@ namespace Shared.BusinessInterface
         public bool UpdateStuff(Stuff s);
         public Stuff GetSelectedStuff(int idSelected);
 
+        public int GetStuffNewId();
     }
 }

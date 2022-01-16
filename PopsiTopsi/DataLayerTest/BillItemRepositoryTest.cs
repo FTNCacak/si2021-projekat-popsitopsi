@@ -9,23 +9,45 @@ using System.Text;
 
 namespace DataLayerTest
 {
+    [TestClass]
     public class BillItemRepositoryTest
     {
         public BillItem billitem;
         public IBillItemRepository billitemRepository;
-
+        public List<BillItem> list = new List<BillItem>();
+        public BillItem billitem1, billitem2;
 
         [TestInitialize]
         public void init()
         {
-            billitem = new BillItem
+           billitem = new BillItem
             {
-                Article_Id = 4141,
-                Bill_Id = 41424,
-                Quantity = 3,
+                Article_Id = 7,
+                Bill_Id = 5010,
+                Quantity = 33333,
                 
 
             };
+           billitem1 = new BillItem
+            {
+                Article_Id = 9,
+                Bill_Id = 5010,
+                Quantity = 33333,
+
+
+            };
+            billitem2 = new BillItem
+            {
+                Article_Id = 8,
+                Bill_Id = 5010,
+                Quantity = 33333,
+
+
+            };
+            
+            list.Add(billitem);
+            list.Add(billitem1);
+            list.Add(billitem2);
 
             billitemRepository = new BillItemRepository();
 
@@ -40,16 +62,28 @@ namespace DataLayerTest
         [TestMethod]
         public void InsertBillItemTest()
         {
-            int result = billitemRepository.InsertBillItem(billitem);
+            int result = billitemRepository.InsertBillItem(billitem1);
+           
             Assert.IsTrue(result > 0);
         }
         [TestMethod]
         public void UpdateBillItemTest()
         {
-            billitemRepository.InsertBillItem(billitem);
-            BillItem newBillItem = billitemRepository.GetAllBillItems().Where(x => x.Bill_Id == billitem.Bill_Id && x.Article_Id==billitem.Article_Id).ToList()[0];
-            int result = billitemRepository.UpdateBillItem(newBillItem);
-            Assert.IsTrue(result > 0);
+            billitemRepository.InsertBillItem(billitem2);
+           
+            billitem2.Quantity = 256;
+           
+            billitemRepository.UpdateBillItem(billitem2);
+            decimal result = billitemRepository.GetAllBillItems().FirstOrDefault(x => x.Bill_Id == billitem2.Bill_Id && x.Article_Id==billitem2.Article_Id).Quantity;
+            Assert.AreEqual(result,256);
+        }
+        [TestCleanup]
+        public void CleanUpAfterTest()
+        {
+            foreach (BillItem item in list)
+            {
+                billitemRepository.DeleteBillItem(item.Bill_Id,item.Article_Id);
+            }
         }
     }
 }

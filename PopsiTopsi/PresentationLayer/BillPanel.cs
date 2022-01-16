@@ -37,7 +37,7 @@ namespace PresentationLayer
                 bill +=  "\t\t\t"+ bit.Quantity + " x " + article.Price + " din.\n\n";
             }
             bill += "-----------------------------------------\n\n";
-            bill += "\tUkupno : \t\t\t" + b.Total + " din.\n";
+            bill += "\tUkupno : \t\t" + b.Total + " din.\n";
             bill += "-----------------------------------------\n\n";
             bill += "\n\n\t\t Radnik:" +stuffUsername;
             richTextBox1.Text = bill;
@@ -46,6 +46,11 @@ namespace PresentationLayer
         }
 
         private void BillPanel_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -346,6 +346,7 @@ namespace PresentationLayer
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Stuffs";
             this.Text = "Stuffs";
             this.Load += new System.EventHandler(this.Stuffs_Load);
