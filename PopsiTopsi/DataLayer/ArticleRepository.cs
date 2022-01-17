@@ -53,8 +53,6 @@ namespace DataLayer
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
-                Console.WriteLine("Ivana");
-                Console.WriteLine(a.Image);
                 sqlCommand.CommandText = string.Format("INSERT INTO Articles VALUES('{0}', '{1}', '{2}', '{3}', '{4}')", a.Name, a.Type, a.Price, a.Image, a.Description);
                 sqlConnection.Open();
                 return sqlCommand.ExecuteNonQuery();
